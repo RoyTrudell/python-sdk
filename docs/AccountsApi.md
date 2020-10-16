@@ -6,9 +6,12 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_manual_account**](AccountsApi.md#create_manual_account) | **POST** /accounts | Add Manual Account
 [**delete_account**](AccountsApi.md#delete_account) | **DELETE** /accounts/{accountId} | Delete Account
+[**evaluate_address**](AccountsApi.md#evaluate_address) | **POST** /accounts/evaluateAddress | Evaluate Address
 [**get_account**](AccountsApi.md#get_account) | **GET** /accounts/{accountId} | Get Account Details
 [**get_all_accounts**](AccountsApi.md#get_all_accounts) | **GET** /accounts | Get Accounts
+[**get_associated_accounts**](AccountsApi.md#get_associated_accounts) | **GET** /accounts/associatedAccounts/{providerAccountId} | Associated Accounts
 [**get_historical_balances**](AccountsApi.md#get_historical_balances) | **GET** /accounts/historicalBalances | Get Historical Balances
+[**migrate_accounts**](AccountsApi.md#migrate_accounts) | **PUT** /accounts/migrateAccounts/{providerAccountId} | Migrate Accounts
 [**update_account**](AccountsApi.md#update_account) | **PUT** /accounts/{accountId} | Update Account
 
 
@@ -107,12 +110,60 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **evaluate_address**
+> EvaluateAddressResponse evaluate_address(address_param)
+
+Evaluate Address
+
+Use this service to validate the address before adding the real estate account.<br>If the address is valid, the service will return the complete address information.<br>The response will contain multiple addresses if the user-provided input matches with multiple entries in the vendor database.<br>In the case of multiple matches, the user can select the appropriate address from the list and then invoke the add account service with the complete address.<br><b>Note:</b> Yodlee recommends to use this service before adding the real estate account to avoid failures.<br>
+
+### Example
+```python
+from __future__ import print_function
+import time
+import python_client
+from python_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = python_client.AccountsApi()
+address_param = python_client.EvaluateAddressRequest() # EvaluateAddressRequest | addressParam
+
+try:
+    # Evaluate Address
+    api_response = api_instance.evaluate_address(address_param)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling AccountsApi->evaluate_address: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **address_param** | [**EvaluateAddressRequest**](EvaluateAddressRequest.md)| addressParam | 
+
+### Return type
+
+[**EvaluateAddressResponse**](EvaluateAddressResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json;charset=UTF-8
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_account**
 > AccountResponse get_account(account_id, container, include=include)
 
 Get Account Details
 
-The get account details service provides detailed information of an account.<br>
+The get account details service provides detailed information of an account.<br><b>Note:</b><br>fullAccountNumber is deprecated and is replaced with fullAccountNumberList in include parameter and response.
 
 ### Example
 ```python
@@ -126,7 +177,7 @@ from pprint import pprint
 api_instance = python_client.AccountsApi()
 account_id = 789 # int | accountId
 container = 'container_example' # str | bank/creditCard/investment/insurance/loan/reward/bill/realEstate/otherAssets/otherLiabilities
-include = 'include_example' # str | profile, holder, fullAccountNumber, paymentProfile, autoRefresh (optional)
+include = 'include_example' # str | profile, holder, fullAccountNumber, fullAccountNumberList, paymentProfile, autoRefresh<br><b>Note:</b>fullAccountNumber is deprecated and is replaced with fullAccountNumberList in include parameter and response. (optional)
 
 try:
     # Get Account Details
@@ -142,7 +193,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **account_id** | **int**| accountId | 
  **container** | **str**| bank/creditCard/investment/insurance/loan/reward/bill/realEstate/otherAssets/otherLiabilities | 
- **include** | **str**| profile, holder, fullAccountNumber, paymentProfile, autoRefresh | [optional] 
+ **include** | **str**| profile, holder, fullAccountNumber, fullAccountNumberList, paymentProfile, autoRefresh&lt;br&gt;&lt;b&gt;Note:&lt;/b&gt;fullAccountNumber is deprecated and is replaced with fullAccountNumberList in include parameter and response. | [optional] 
 
 ### Return type
 
@@ -164,7 +215,7 @@ No authorization required
 
 Get Accounts
 
-The get accounts service provides information about accounts added by the user.<br>By default, this service returns information for active and to be closed accounts.<br>If requestId is provided, the accounts that are updated in the context of the requestId will be provided in the response.<br>
+The get accounts service provides information about accounts added by the user.<br>By default, this service returns information for active and to be closed accounts.<br>If requestId is provided, the accounts that are updated in the context of the requestId will be provided in the response.<br><b>Note:</b><br>fullAccountNumber is deprecated and is replaced with fullAccountNumberList in include parameter and response.
 
 ### Example
 ```python
@@ -178,7 +229,7 @@ from pprint import pprint
 api_instance = python_client.AccountsApi()
 account_id = 'account_id_example' # str | Comma separated accountIds. (optional)
 container = 'container_example' # str | bank/creditCard/investment/insurance/loan/reward/bill/realEstate/otherAssets/otherLiabilities (optional)
-include = 'include_example' # str | profile, holder, fullAccountNumber, paymentProfile, autoRefresh (optional)
+include = 'include_example' # str | profile, holder, fullAccountNumber, fullAccountNumberList, paymentProfile, autoRefresh<br><b>Note:</b>fullAccountNumber is deprecated and is replaced with fullAccountNumberList in include parameter and response. (optional)
 provider_account_id = 'provider_account_id_example' # str | Comma separated providerAccountIds. (optional)
 request_id = 'request_id_example' # str | The unique identifier that returns contextual data (optional)
 status = 'status_example' # str | ACTIVE,INACTIVE,TO_BE_CLOSED,CLOSED (optional)
@@ -197,7 +248,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **account_id** | **str**| Comma separated accountIds. | [optional] 
  **container** | **str**| bank/creditCard/investment/insurance/loan/reward/bill/realEstate/otherAssets/otherLiabilities | [optional] 
- **include** | **str**| profile, holder, fullAccountNumber, paymentProfile, autoRefresh | [optional] 
+ **include** | **str**| profile, holder, fullAccountNumber, fullAccountNumberList, paymentProfile, autoRefresh&lt;br&gt;&lt;b&gt;Note:&lt;/b&gt;fullAccountNumber is deprecated and is replaced with fullAccountNumberList in include parameter and response. | [optional] 
  **provider_account_id** | **str**| Comma separated providerAccountIds. | [optional] 
  **request_id** | **str**| The unique identifier that returns contextual data | [optional] 
  **status** | **str**| ACTIVE,INACTIVE,TO_BE_CLOSED,CLOSED | [optional] 
@@ -205,6 +256,54 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AccountResponse**](AccountResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json;charset=UTF-8
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_associated_accounts**
+> AssociatedAccountsResponse get_associated_accounts(provider_account_id)
+
+Associated Accounts
+
+Yodlee classifies providers into credential-based aggregation and Open Banking (OB) providers.<br>This service is associated with the OB aggregation flow. As part of the OB solution, financial institutions may merge their subsidiaries and provide data as a single OB provider.<br>Before the OB solution, this data was aggregated with different provider IDs.<br>This service accepts the providerAccountId and returns all accounts of the associated providerAccounts that belong to the subsidiary of the financial institution.<br>This data should be displayed to the user to let them select the accounts that they wish to provide consent to share account data.<br>
+
+### Example
+```python
+from __future__ import print_function
+import time
+import python_client
+from python_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = python_client.AccountsApi()
+provider_account_id = 789 # int | providerAccountId
+
+try:
+    # Associated Accounts
+    api_response = api_instance.get_associated_accounts(provider_account_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling AccountsApi->get_associated_accounts: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **provider_account_id** | **int**| providerAccountId | 
+
+### Return type
+
+[**AssociatedAccountsResponse**](AssociatedAccountsResponse.md)
 
 ### Authorization
 
@@ -273,6 +372,54 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json;charset=UTF-8
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **migrate_accounts**
+> AccountMigrationResponse migrate_accounts(provider_account_id)
+
+Migrate Accounts
+
+This service is associated with the open banking (OB) flow.<br>Before invoking this service, display all the associated accounts to the user by calling the GET /associatedAccounts API.<br>The migrate accounts API treats the user's consent acceptance to initiate account migration. Invoking this service indicates that the user has given the consent to access the associated account information from the financial institution.<br>If an existing provider supports bank, card, and loan accounts, and chose only to provide bank and card through OB APIs, a new providerAccountId for OB will be created.<br>The bank and card account information will be moved to the new providerAccountId. The loan account will be retained in the existing provider account.<br>This service returns the OB providerId and the OB providerAccountId. Note that, as part of this process, there is a possibility of one or more providerAccounts getting merged.<br>The update or delete actions will not be allowed for the providerAccounts involved in the migration process until the user completes the authorization on the OB provider.<br>The oauthMigrationEligibilityStatus attribute in the GET /accounts API response indicates the accounts included in the migration process.<br>
+
+### Example
+```python
+from __future__ import print_function
+import time
+import python_client
+from python_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = python_client.AccountsApi()
+provider_account_id = 789 # int | providerAccountId
+
+try:
+    # Migrate Accounts
+    api_response = api_instance.migrate_accounts(provider_account_id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling AccountsApi->migrate_accounts: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **provider_account_id** | **int**| providerAccountId | 
+
+### Return type
+
+[**AccountMigrationResponse**](AccountMigrationResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json;charset=UTF-8
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

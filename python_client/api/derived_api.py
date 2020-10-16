@@ -143,6 +143,7 @@ class DerivedApi(object):
 
         :param async_req bool
         :param str account_ids: comma separated accountIds
+        :param str container: bank/creditCard/investment/insurance/loan/realEstate/otherAssets/otherLiabilities
         :param str from_date: from date for balance retrieval (YYYY-MM-DD)
         :param str include: details
         :param str interval: D-daily, W-weekly or M-monthly
@@ -171,6 +172,7 @@ class DerivedApi(object):
 
         :param async_req bool
         :param str account_ids: comma separated accountIds
+        :param str container: bank/creditCard/investment/insurance/loan/realEstate/otherAssets/otherLiabilities
         :param str from_date: from date for balance retrieval (YYYY-MM-DD)
         :param str include: details
         :param str interval: D-daily, W-weekly or M-monthly
@@ -182,7 +184,7 @@ class DerivedApi(object):
                  returns the request thread.
         """
 
-        all_params = ['account_ids', 'from_date', 'include', 'interval', 'skip', 'to_date', 'top']  # noqa: E501
+        all_params = ['account_ids', 'container', 'from_date', 'include', 'interval', 'skip', 'to_date', 'top']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -205,6 +207,8 @@ class DerivedApi(object):
         query_params = []
         if 'account_ids' in params:
             query_params.append(('accountIds', params['account_ids']))  # noqa: E501
+        if 'container' in params:
+            query_params.append(('container', params['container']))  # noqa: E501
         if 'from_date' in params:
             query_params.append(('fromDate', params['from_date']))  # noqa: E501
         if 'include' in params:

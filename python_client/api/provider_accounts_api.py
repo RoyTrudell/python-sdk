@@ -231,17 +231,17 @@ class ProviderAccountsApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def get_all_provider_accounts(self, include, **kwargs):  # noqa: E501
+    def get_all_provider_accounts(self, **kwargs):  # noqa: E501
         """Get Provider Accounts  # noqa: E501
 
         The get provider accounts service is used to return all the provider accounts added by the user. <br>This includes the failed and successfully added provider accounts.<br>  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_all_provider_accounts(include, async_req=True)
+        >>> thread = api.get_all_provider_accounts(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str include: include (required)
+        :param str include: include
         :param str provider_ids: Comma separated providerIds.
         :return: ProviderAccountResponse
                  If the method is called asynchronously,
@@ -249,22 +249,22 @@ class ProviderAccountsApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.get_all_provider_accounts_with_http_info(include, **kwargs)  # noqa: E501
+            return self.get_all_provider_accounts_with_http_info(**kwargs)  # noqa: E501
         else:
-            (data) = self.get_all_provider_accounts_with_http_info(include, **kwargs)  # noqa: E501
+            (data) = self.get_all_provider_accounts_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def get_all_provider_accounts_with_http_info(self, include, **kwargs):  # noqa: E501
+    def get_all_provider_accounts_with_http_info(self, **kwargs):  # noqa: E501
         """Get Provider Accounts  # noqa: E501
 
         The get provider accounts service is used to return all the provider accounts added by the user. <br>This includes the failed and successfully added provider accounts.<br>  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.get_all_provider_accounts_with_http_info(include, async_req=True)
+        >>> thread = api.get_all_provider_accounts_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str include: include (required)
+        :param str include: include
         :param str provider_ids: Comma separated providerIds.
         :return: ProviderAccountResponse
                  If the method is called asynchronously,
@@ -286,10 +286,6 @@ class ProviderAccountsApi(object):
                 )
             params[key] = val
         del params['kwargs']
-        # verify the required parameter 'include' is set
-        if ('include' not in params or
-                params['include'] is None):
-            raise ValueError("Missing the required parameter `include` when calling `get_all_provider_accounts`")  # noqa: E501
 
         collection_formats = {}
 

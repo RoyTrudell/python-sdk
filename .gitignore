@@ -62,3 +62,9 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
+
+.settings/
+.swagger-codegen-ignore
+.project
+.pydevproject
+.swagger-codegen/

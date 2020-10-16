@@ -79,7 +79,7 @@ class ConfigsPublicKey(object):
     def key(self):
         """Gets the key of this ConfigsPublicKey.  # noqa: E501
 
-        Public key that the customer should be using to encrypt the credentials and answers before sending to the add & update providerAccounts APIs.<br><br><b>Endpoints</b>:<ul><li>GET configs/publicKey</li></ul>  # noqa: E501
+        Public key that the customer should be using to encrypt the credentials and answers before sending to the add and update providerAccounts APIs.<br><br><b>Endpoints</b>:<ul><li>GET configs/publicKey</li></ul>  # noqa: E501
 
         :return: The key of this ConfigsPublicKey.  # noqa: E501
         :rtype: str
@@ -90,7 +90,7 @@ class ConfigsPublicKey(object):
     def key(self, key):
         """Sets the key of this ConfigsPublicKey.
 
-        Public key that the customer should be using to encrypt the credentials and answers before sending to the add & update providerAccounts APIs.<br><br><b>Endpoints</b>:<ul><li>GET configs/publicKey</li></ul>  # noqa: E501
+        Public key that the customer should be using to encrypt the credentials and answers before sending to the add and update providerAccounts APIs.<br><br><b>Endpoints</b>:<ul><li>GET configs/publicKey</li></ul>  # noqa: E501
 
         :param key: The key of this ConfigsPublicKey.  # noqa: E501
         :type: str

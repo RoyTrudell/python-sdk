@@ -35,59 +35,66 @@ class ProviderAccountDetail(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'preferences': 'ProviderAccountPreferences',
+        'oauth_migration_status': 'str',
+        'is_manual': 'bool',
         'last_updated': 'str',
         'consent_id': 'int',
         'login_form': 'list[LoginForm]',
-        'preferences': 'ProviderAccountPreferences',
         'created_date': 'str',
         'aggregation_source': 'str',
         'provider_id': 'int',
         'request_id': 'str',
-        'is_manual': 'bool',
         'id': 'int',
         'dataset': 'list[AccountDataset]',
         'status': 'str'
     }
 
     attribute_map = {
+        'preferences': 'preferences',
+        'oauth_migration_status': 'oauthMigrationStatus',
+        'is_manual': 'isManual',
         'last_updated': 'lastUpdated',
         'consent_id': 'consentId',
         'login_form': 'loginForm',
-        'preferences': 'preferences',
         'created_date': 'createdDate',
         'aggregation_source': 'aggregationSource',
         'provider_id': 'providerId',
         'request_id': 'requestId',
-        'is_manual': 'isManual',
         'id': 'id',
         'dataset': 'dataset',
         'status': 'status'
     }
 
-    def __init__(self, last_updated=None, consent_id=None, login_form=None, preferences=None, created_date=None, aggregation_source=None, provider_id=None, request_id=None, is_manual=None, id=None, dataset=None, status=None):  # noqa: E501
+    def __init__(self, preferences=None, oauth_migration_status=None, is_manual=None, last_updated=None, consent_id=None, login_form=None, created_date=None, aggregation_source=None, provider_id=None, request_id=None, id=None, dataset=None, status=None):  # noqa: E501
         """ProviderAccountDetail - a model defined in Swagger"""  # noqa: E501
 
+        self._preferences = None
+        self._oauth_migration_status = None
+        self._is_manual = None
         self._last_updated = None
         self._consent_id = None
         self._login_form = None
-        self._preferences = None
         self._created_date = None
         self._aggregation_source = None
         self._provider_id = None
         self._request_id = None
-        self._is_manual = None
         self._id = None
         self._dataset = None
         self._status = None
         self.discriminator = None
 
+        if preferences is not None:
+            self.preferences = preferences
+        if oauth_migration_status is not None:
+            self.oauth_migration_status = oauth_migration_status
+        if is_manual is not None:
+            self.is_manual = is_manual
         if last_updated is not None:
             self.last_updated = last_updated
         self.consent_id = consent_id
         if login_form is not None:
             self.login_form = login_form
-        if preferences is not None:
-            self.preferences = preferences
         if created_date is not None:
             self.created_date = created_date
         if aggregation_source is not None:
@@ -96,14 +103,87 @@ class ProviderAccountDetail(object):
             self.provider_id = provider_id
         if request_id is not None:
             self.request_id = request_id
-        if is_manual is not None:
-            self.is_manual = is_manual
         if id is not None:
             self.id = id
         if dataset is not None:
             self.dataset = dataset
         if status is not None:
             self.status = status
+
+    @property
+    def preferences(self):
+        """Gets the preferences of this ProviderAccountDetail.  # noqa: E501
+
+        User preference values for Auto-Refresh and DataExtracts Notification<br><br><b>Endpoints</b>:<ul><li>GET providerAccounts</li><li>GET providerAccounts/{providerAccountId}</li></ul>  # noqa: E501
+
+        :return: The preferences of this ProviderAccountDetail.  # noqa: E501
+        :rtype: ProviderAccountPreferences
+        """
+        return self._preferences
+
+    @preferences.setter
+    def preferences(self, preferences):
+        """Sets the preferences of this ProviderAccountDetail.
+
+        User preference values for Auto-Refresh and DataExtracts Notification<br><br><b>Endpoints</b>:<ul><li>GET providerAccounts</li><li>GET providerAccounts/{providerAccountId}</li></ul>  # noqa: E501
+
+        :param preferences: The preferences of this ProviderAccountDetail.  # noqa: E501
+        :type: ProviderAccountPreferences
+        """
+
+        self._preferences = preferences
+
+    @property
+    def oauth_migration_status(self):
+        """Gets the oauth_migration_status of this ProviderAccountDetail.  # noqa: E501
+
+        Indicates the migration status of the provider account from screen-scraping provider to the Open Banking provider. <br><br><b>Endpoints</b>:<ul><li>GET providerAccounts</li><li>GET providerAccounts/{providerAccountId}</li><li>PUT providerAccounts/{providerAccountId}</li><li>GET dataExtracts/userData</li></ul>  # noqa: E501
+
+        :return: The oauth_migration_status of this ProviderAccountDetail.  # noqa: E501
+        :rtype: str
+        """
+        return self._oauth_migration_status
+
+    @oauth_migration_status.setter
+    def oauth_migration_status(self, oauth_migration_status):
+        """Sets the oauth_migration_status of this ProviderAccountDetail.
+
+        Indicates the migration status of the provider account from screen-scraping provider to the Open Banking provider. <br><br><b>Endpoints</b>:<ul><li>GET providerAccounts</li><li>GET providerAccounts/{providerAccountId}</li><li>PUT providerAccounts/{providerAccountId}</li><li>GET dataExtracts/userData</li></ul>  # noqa: E501
+
+        :param oauth_migration_status: The oauth_migration_status of this ProviderAccountDetail.  # noqa: E501
+        :type: str
+        """
+        allowed_values = ["IN_PROGRESS", "TO_BE_MIGRATED", "COMPLETED"]  # noqa: E501
+        if oauth_migration_status not in allowed_values:
+            raise ValueError(
+                "Invalid value for `oauth_migration_status` ({0}), must be one of {1}"  # noqa: E501
+                .format(oauth_migration_status, allowed_values)
+            )
+
+        self._oauth_migration_status = oauth_migration_status
+
+    @property
+    def is_manual(self):
+        """Gets the is_manual of this ProviderAccountDetail.  # noqa: E501
+
+        Indicates whether account is a manual or aggregated provider account.<br><br><b>Endpoints</b>:<ul><li>GET providerAccounts</li><li>POST providerAccounts</li><li>PUT providerAccounts/{providerAccountId}</li><li>GET providerAccounts/{providerAccountId}</li><li>GET dataExtracts/userData</li></ul>  # noqa: E501
+
+        :return: The is_manual of this ProviderAccountDetail.  # noqa: E501
+        :rtype: bool
+        """
+        return self._is_manual
+
+    @is_manual.setter
+    def is_manual(self, is_manual):
+        """Sets the is_manual of this ProviderAccountDetail.
+
+        Indicates whether account is a manual or aggregated provider account.<br><br><b>Endpoints</b>:<ul><li>GET providerAccounts</li><li>POST providerAccounts</li><li>PUT providerAccounts/{providerAccountId}</li><li>GET providerAccounts/{providerAccountId}</li><li>GET dataExtracts/userData</li></ul>  # noqa: E501
+
+        :param is_manual: The is_manual of this ProviderAccountDetail.  # noqa: E501
+        :type: bool
+        """
+
+        self._is_manual = is_manual
 
     @property
     def last_updated(self):
@@ -175,29 +255,6 @@ class ProviderAccountDetail(object):
         """
 
         self._login_form = login_form
-
-    @property
-    def preferences(self):
-        """Gets the preferences of this ProviderAccountDetail.  # noqa: E501
-
-        User preference values for Auto-Refresh and DataExtracts Notification<br><br><b>Endpoints</b>:<ul><li>GET providerAccounts</li><li>GET providerAccounts/{providerAccountId}</li></ul>  # noqa: E501
-
-        :return: The preferences of this ProviderAccountDetail.  # noqa: E501
-        :rtype: ProviderAccountPreferences
-        """
-        return self._preferences
-
-    @preferences.setter
-    def preferences(self, preferences):
-        """Sets the preferences of this ProviderAccountDetail.
-
-        User preference values for Auto-Refresh and DataExtracts Notification<br><br><b>Endpoints</b>:<ul><li>GET providerAccounts</li><li>GET providerAccounts/{providerAccountId}</li></ul>  # noqa: E501
-
-        :param preferences: The preferences of this ProviderAccountDetail.  # noqa: E501
-        :type: ProviderAccountPreferences
-        """
-
-        self._preferences = preferences
 
     @property
     def created_date(self):
@@ -296,29 +353,6 @@ class ProviderAccountDetail(object):
         """
 
         self._request_id = request_id
-
-    @property
-    def is_manual(self):
-        """Gets the is_manual of this ProviderAccountDetail.  # noqa: E501
-
-        Indicates whether account is a manual or aggregated provider account.<br><br><b>Endpoints</b>:<ul><li>GET providerAccounts</li><li>POST providerAccounts</li><li>PUT providerAccounts/{providerAccountId}</li><li>GET providerAccounts/{providerAccountId}</li><li>GET dataExtracts/userData</li></ul>  # noqa: E501
-
-        :return: The is_manual of this ProviderAccountDetail.  # noqa: E501
-        :rtype: bool
-        """
-        return self._is_manual
-
-    @is_manual.setter
-    def is_manual(self, is_manual):
-        """Sets the is_manual of this ProviderAccountDetail.
-
-        Indicates whether account is a manual or aggregated provider account.<br><br><b>Endpoints</b>:<ul><li>GET providerAccounts</li><li>POST providerAccounts</li><li>PUT providerAccounts/{providerAccountId}</li><li>GET providerAccounts/{providerAccountId}</li><li>GET dataExtracts/userData</li></ul>  # noqa: E501
-
-        :param is_manual: The is_manual of this ProviderAccountDetail.  # noqa: E501
-        :type: bool
-        """
-
-        self._is_manual = is_manual
 
     @property
     def id(self):

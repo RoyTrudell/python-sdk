@@ -23,6 +23,7 @@ from python_client.models.account_profile import AccountProfile  # noqa: F401,E5
 from python_client.models.auto_refresh import AutoRefresh  # noqa: F401,E501
 from python_client.models.bank_transfer_code import BankTransferCode  # noqa: F401,E501
 from python_client.models.coverage import Coverage  # noqa: F401,E501
+from python_client.models.full_account_number_list import FullAccountNumberList  # noqa: F401,E501
 from python_client.models.loan_payoff_details import LoanPayoffDetails  # noqa: F401,E501
 from python_client.models.money import Money  # noqa: F401,E501
 from python_client.models.payment_profile import PaymentProfile  # noqa: F401,E501
@@ -99,6 +100,7 @@ class Account(object):
         'collateral': 'str',
         'dataset': 'list[AccountDataset]',
         'running_balance': 'Money',
+        'source_id': 'str',
         'due_date': 'str',
         'frequency': 'str',
         'maturity_amount': 'Money',
@@ -132,14 +134,16 @@ class Account(object):
         'bank_transfer_code': 'list[BankTransferCode]',
         'expiration_date': 'str',
         'coverage': 'list[Coverage]',
-        'loan_pay_off_details': 'LoanPayoffDetails',
         'cash_apr': 'float',
         'auto_refresh': 'AutoRefresh',
+        'oauth_migration_status': 'str',
         'displayed_name': 'str',
+        'full_account_number_list': 'FullAccountNumberList',
         'amount_due': 'Money',
         'current_level': 'str',
         'original_loan_amount': 'Money',
         'policy_to_date': 'str',
+        'loan_payoff_details': 'LoanPayoffDetails',
         'payment_profile': 'PaymentProfile',
         'container': 'str',
         'last_employee_contribution_date': 'str',
@@ -204,6 +208,7 @@ class Account(object):
         'collateral': 'collateral',
         'dataset': 'dataset',
         'running_balance': 'runningBalance',
+        'source_id': 'sourceId',
         'due_date': 'dueDate',
         'frequency': 'frequency',
         'maturity_amount': 'maturityAmount',
@@ -237,14 +242,16 @@ class Account(object):
         'bank_transfer_code': 'bankTransferCode',
         'expiration_date': 'expirationDate',
         'coverage': 'coverage',
-        'loan_pay_off_details': 'loanPayOffDetails',
         'cash_apr': 'cashApr',
         'auto_refresh': 'autoRefresh',
+        'oauth_migration_status': 'oauthMigrationStatus',
         'displayed_name': 'displayedName',
+        'full_account_number_list': 'fullAccountNumberList',
         'amount_due': 'amountDue',
         'current_level': 'currentLevel',
         'original_loan_amount': 'originalLoanAmount',
         'policy_to_date': 'policyToDate',
+        'loan_payoff_details': 'loanPayoffDetails',
         'payment_profile': 'paymentProfile',
         'container': 'CONTAINER',
         'last_employee_contribution_date': 'lastEmployeeContributionDate',
@@ -252,7 +259,7 @@ class Account(object):
         'recurring_payment': 'recurringPayment'
     }
 
-    def __init__(self, available_cash=None, include_in_net_worth=None, money_market_balance=None, enrollment_date=None, estimated_date=None, memo=None, guarantor=None, interest_paid_last_year=None, last_updated=None, balance=None, home_insurance_type=None, id=None, cash=None, total_credit_line=None, provider_name=None, valuation_type=None, margin_balance=None, apr=None, available_credit=None, current_balance=None, is_manual=None, profile=None, escrow_balance=None, next_level=None, classification=None, loan_payoff_amount=None, interest_rate_type=None, loan_pay_by_date=None, face_amount=None, policy_from_date=None, premium_payment_term=None, policy_term=None, repayment_plan_type=None, available_balance=None, account_status=None, life_insurance_type=None, full_account_number=None, premium=None, aggregation_source=None, over_draft_limit=None, nickname=None, term=None, interest_rate=None, death_benefit=None, address=None, cash_value=None, holder=None, _401k_loan=None, home_value=None, account_number=None, created_date=None, interest_paid_ytd=None, provider_account_id=None, collateral=None, dataset=None, running_balance=None, due_date=None, frequency=None, maturity_amount=None, associated_provider_account_id=None, is_asset=None, principal_balance=None, total_cash_limit=None, maturity_date=None, minimum_amount_due=None, annual_percentage_yield=None, account_type=None, origination_date=None, total_vested_balance=None, reward_balance=None, source_account_status=None, policy_effective_date=None, total_unvested_balance=None, annuity_balance=None, account_name=None, total_credit_limit=None, policy_status=None, short_balance=None, lender=None, last_employee_contribution_amount=None, provider_id=None, last_payment_date=None, primary_reward_unit=None, last_payment_amount=None, remaining_balance=None, user_classification=None, bank_transfer_code=None, expiration_date=None, coverage=None, loan_pay_off_details=None, cash_apr=None, auto_refresh=None, displayed_name=None, amount_due=None, current_level=None, original_loan_amount=None, policy_to_date=None, payment_profile=None, container=None, last_employee_contribution_date=None, last_payment=None, recurring_payment=None):  # noqa: E501
+    def __init__(self, available_cash=None, include_in_net_worth=None, money_market_balance=None, enrollment_date=None, estimated_date=None, memo=None, guarantor=None, interest_paid_last_year=None, last_updated=None, balance=None, home_insurance_type=None, id=None, cash=None, total_credit_line=None, provider_name=None, valuation_type=None, margin_balance=None, apr=None, available_credit=None, current_balance=None, is_manual=None, profile=None, escrow_balance=None, next_level=None, classification=None, loan_payoff_amount=None, interest_rate_type=None, loan_pay_by_date=None, face_amount=None, policy_from_date=None, premium_payment_term=None, policy_term=None, repayment_plan_type=None, available_balance=None, account_status=None, life_insurance_type=None, full_account_number=None, premium=None, aggregation_source=None, over_draft_limit=None, nickname=None, term=None, interest_rate=None, death_benefit=None, address=None, cash_value=None, holder=None, _401k_loan=None, home_value=None, account_number=None, created_date=None, interest_paid_ytd=None, provider_account_id=None, collateral=None, dataset=None, running_balance=None, source_id=None, due_date=None, frequency=None, maturity_amount=None, associated_provider_account_id=None, is_asset=None, principal_balance=None, total_cash_limit=None, maturity_date=None, minimum_amount_due=None, annual_percentage_yield=None, account_type=None, origination_date=None, total_vested_balance=None, reward_balance=None, source_account_status=None, policy_effective_date=None, total_unvested_balance=None, annuity_balance=None, account_name=None, total_credit_limit=None, policy_status=None, short_balance=None, lender=None, last_employee_contribution_amount=None, provider_id=None, last_payment_date=None, primary_reward_unit=None, last_payment_amount=None, remaining_balance=None, user_classification=None, bank_transfer_code=None, expiration_date=None, coverage=None, cash_apr=None, auto_refresh=None, oauth_migration_status=None, displayed_name=None, full_account_number_list=None, amount_due=None, current_level=None, original_loan_amount=None, policy_to_date=None, loan_payoff_details=None, payment_profile=None, container=None, last_employee_contribution_date=None, last_payment=None, recurring_payment=None):  # noqa: E501
         """Account - a model defined in Swagger"""  # noqa: E501
 
         self._available_cash = None
@@ -311,6 +318,7 @@ class Account(object):
         self._collateral = None
         self._dataset = None
         self._running_balance = None
+        self._source_id = None
         self._due_date = None
         self._frequency = None
         self._maturity_amount = None
@@ -344,14 +352,16 @@ class Account(object):
         self._bank_transfer_code = None
         self._expiration_date = None
         self._coverage = None
-        self._loan_pay_off_details = None
         self._cash_apr = None
         self._auto_refresh = None
+        self._oauth_migration_status = None
         self._displayed_name = None
+        self._full_account_number_list = None
         self._amount_due = None
         self._current_level = None
         self._original_loan_amount = None
         self._policy_to_date = None
+        self._loan_payoff_details = None
         self._payment_profile = None
         self._container = None
         self._last_employee_contribution_date = None
@@ -471,6 +481,8 @@ class Account(object):
             self.dataset = dataset
         if running_balance is not None:
             self.running_balance = running_balance
+        if source_id is not None:
+            self.source_id = source_id
         if due_date is not None:
             self.due_date = due_date
         if frequency is not None:
@@ -537,14 +549,16 @@ class Account(object):
             self.expiration_date = expiration_date
         if coverage is not None:
             self.coverage = coverage
-        if loan_pay_off_details is not None:
-            self.loan_pay_off_details = loan_pay_off_details
         if cash_apr is not None:
             self.cash_apr = cash_apr
         if auto_refresh is not None:
             self.auto_refresh = auto_refresh
+        if oauth_migration_status is not None:
+            self.oauth_migration_status = oauth_migration_status
         if displayed_name is not None:
             self.displayed_name = displayed_name
+        if full_account_number_list is not None:
+            self.full_account_number_list = full_account_number_list
         if amount_due is not None:
             self.amount_due = amount_due
         if current_level is not None:
@@ -553,6 +567,8 @@ class Account(object):
             self.original_loan_amount = original_loan_amount
         if policy_to_date is not None:
             self.policy_to_date = policy_to_date
+        if loan_payoff_details is not None:
+            self.loan_payoff_details = loan_payoff_details
         if payment_profile is not None:
             self.payment_profile = payment_profile
         if container is not None:
@@ -1438,7 +1454,7 @@ class Account(object):
     def full_account_number(self):
         """Gets the full_account_number of this Account.  # noqa: E501
 
-        Full account number of the account that is included only when include = fullAccountNumber is provided in the request. For student loan account the account number that will be used for ACH or fund transfer<br><br><b>Aggregated / Manual</b>: Both <br><b>Applicable containers</b>: bank, creditCard, investment, insurance, loan, reward, bill, otherAssets, otherLiabilities <br><b>Endpoints</b>:<ul><li>GET accounts</li><li>GET accounts/{accountId}</li></ul>  # noqa: E501
+        Full account number of the account that is included only when include = fullAccountNumber is provided in the request. For student loan account the account number that will be used for ACH or fund transfer<br><br><b>Aggregated / Manual</b>: Both <br><b>Applicable containers</b>: bank, creditCard, investment, insurance, loan, reward, bill, otherAssets, otherLiabilities <br><b>Endpoints</b>:<ul><li>GET accounts</li><li>GET accounts/{accountId}</li><b> Note : </b> fullAccountNumber is deprecated and is replaced with fullAccountNumberList in include parameter and response.</ul>  # noqa: E501
 
         :return: The full_account_number of this Account.  # noqa: E501
         :rtype: str
@@ -1449,7 +1465,7 @@ class Account(object):
     def full_account_number(self, full_account_number):
         """Sets the full_account_number of this Account.
 
-        Full account number of the account that is included only when include = fullAccountNumber is provided in the request. For student loan account the account number that will be used for ACH or fund transfer<br><br><b>Aggregated / Manual</b>: Both <br><b>Applicable containers</b>: bank, creditCard, investment, insurance, loan, reward, bill, otherAssets, otherLiabilities <br><b>Endpoints</b>:<ul><li>GET accounts</li><li>GET accounts/{accountId}</li></ul>  # noqa: E501
+        Full account number of the account that is included only when include = fullAccountNumber is provided in the request. For student loan account the account number that will be used for ACH or fund transfer<br><br><b>Aggregated / Manual</b>: Both <br><b>Applicable containers</b>: bank, creditCard, investment, insurance, loan, reward, bill, otherAssets, otherLiabilities <br><b>Endpoints</b>:<ul><li>GET accounts</li><li>GET accounts/{accountId}</li><b> Note : </b> fullAccountNumber is deprecated and is replaced with fullAccountNumberList in include parameter and response.</ul>  # noqa: E501
 
         :param full_account_number: The full_account_number of this Account.  # noqa: E501
         :type: str
@@ -1901,6 +1917,29 @@ class Account(object):
         self._running_balance = running_balance
 
     @property
+    def source_id(self):
+        """Gets the source_id of this Account.  # noqa: E501
+
+        A unique ID that the provider site has assigned to the account. The source ID is only available for the HELD accounts.<br><br><b>Applicable containers</b>: bank, creditCard, investment, insurance, loan, bill, reward<br><b>Endpoints</b>:<ul><li>GET accounts</li><li>GET accounts/{accountId}</li><li>GET dataExtracts/userData</li></ul>  # noqa: E501
+
+        :return: The source_id of this Account.  # noqa: E501
+        :rtype: str
+        """
+        return self._source_id
+
+    @source_id.setter
+    def source_id(self, source_id):
+        """Sets the source_id of this Account.
+
+        A unique ID that the provider site has assigned to the account. The source ID is only available for the HELD accounts.<br><br><b>Applicable containers</b>: bank, creditCard, investment, insurance, loan, bill, reward<br><b>Endpoints</b>:<ul><li>GET accounts</li><li>GET accounts/{accountId}</li><li>GET dataExtracts/userData</li></ul>  # noqa: E501
+
+        :param source_id: The source_id of this Account.  # noqa: E501
+        :type: str
+        """
+
+        self._source_id = source_id
+
+    @property
     def due_date(self):
         """Gets the due_date of this Account.  # noqa: E501
 
@@ -2248,7 +2287,7 @@ class Account(object):
         :param source_account_status: The source_account_status of this Account.  # noqa: E501
         :type: str
         """
-        allowed_values = ["IN_REPAYMENT", "DEFAULTED", "IN_SCHOOL", "IN_GRACE_PERIOD", "DELINQUENCY", "DEFERMENT"]  # noqa: E501
+        allowed_values = ["IN_REPAYMENT", "DEFAULTED", "IN_SCHOOL", "IN_GRACE_PERIOD", "DELINQUENCY", "DEFERMENT", "FORBEARANCE"]  # noqa: E501
         if source_account_status not in allowed_values:
             raise ValueError(
                 "Invalid value for `source_account_status` ({0}), must be one of {1}"  # noqa: E501
@@ -2684,29 +2723,6 @@ class Account(object):
         self._coverage = coverage
 
     @property
-    def loan_pay_off_details(self):
-        """Gets the loan_pay_off_details of this Account.  # noqa: E501
-
-        The loan payoff details such as date by which the payoff amount should be paid, loan payoff amount, and the outstanding balance on the loan account.<br><br><b>Aggregated / Manual</b>: Aggregated<br><b>Applicable containers</b>: loan<br><b>Endpoints</b>:<ul><li>GET accounts</li><li>GET accounts/{accountId}</li><li>GET dataExtracts/userData</li></ul>  # noqa: E501
-
-        :return: The loan_pay_off_details of this Account.  # noqa: E501
-        :rtype: LoanPayoffDetails
-        """
-        return self._loan_pay_off_details
-
-    @loan_pay_off_details.setter
-    def loan_pay_off_details(self, loan_pay_off_details):
-        """Sets the loan_pay_off_details of this Account.
-
-        The loan payoff details such as date by which the payoff amount should be paid, loan payoff amount, and the outstanding balance on the loan account.<br><br><b>Aggregated / Manual</b>: Aggregated<br><b>Applicable containers</b>: loan<br><b>Endpoints</b>:<ul><li>GET accounts</li><li>GET accounts/{accountId}</li><li>GET dataExtracts/userData</li></ul>  # noqa: E501
-
-        :param loan_pay_off_details: The loan_pay_off_details of this Account.  # noqa: E501
-        :type: LoanPayoffDetails
-        """
-
-        self._loan_pay_off_details = loan_pay_off_details
-
-    @property
     def cash_apr(self):
         """Gets the cash_apr of this Account.  # noqa: E501
 
@@ -2753,6 +2769,35 @@ class Account(object):
         self._auto_refresh = auto_refresh
 
     @property
+    def oauth_migration_status(self):
+        """Gets the oauth_migration_status of this Account.  # noqa: E501
+
+        Indicates the migration status of the account from screen-scraping provider to the Open Banking provider. <br><br><b>Endpoints</b>:<ul><li>GET accounts</li><li>GET accounts/{accountId}</li><li>GET dataExtracts/userData</li></ul>  # noqa: E501
+
+        :return: The oauth_migration_status of this Account.  # noqa: E501
+        :rtype: str
+        """
+        return self._oauth_migration_status
+
+    @oauth_migration_status.setter
+    def oauth_migration_status(self, oauth_migration_status):
+        """Sets the oauth_migration_status of this Account.
+
+        Indicates the migration status of the account from screen-scraping provider to the Open Banking provider. <br><br><b>Endpoints</b>:<ul><li>GET accounts</li><li>GET accounts/{accountId}</li><li>GET dataExtracts/userData</li></ul>  # noqa: E501
+
+        :param oauth_migration_status: The oauth_migration_status of this Account.  # noqa: E501
+        :type: str
+        """
+        allowed_values = ["IN_PROGRESS", "TO_BE_MIGRATED", "COMPLETED"]  # noqa: E501
+        if oauth_migration_status not in allowed_values:
+            raise ValueError(
+                "Invalid value for `oauth_migration_status` ({0}), must be one of {1}"  # noqa: E501
+                .format(oauth_migration_status, allowed_values)
+            )
+
+        self._oauth_migration_status = oauth_migration_status
+
+    @property
     def displayed_name(self):
         """Gets the displayed_name of this Account.  # noqa: E501
 
@@ -2774,6 +2819,29 @@ class Account(object):
         """
 
         self._displayed_name = displayed_name
+
+    @property
+    def full_account_number_list(self):
+        """Gets the full_account_number_list of this Account.  # noqa: E501
+
+        Full account number List of the account that is included only when include = fullAccountNumberList is provided in the request. <br><br><b>Aggregated / Manual</b>: Both <br><b>Applicable containers</b>: bank, creditCard, investment, insurance, loan, reward, bill, otherAssets, otherLiabilities <br><b>Endpoints</b>:<ul><li>GET accounts</li><li>GET accounts/{accountId}</li></ul>  # noqa: E501
+
+        :return: The full_account_number_list of this Account.  # noqa: E501
+        :rtype: FullAccountNumberList
+        """
+        return self._full_account_number_list
+
+    @full_account_number_list.setter
+    def full_account_number_list(self, full_account_number_list):
+        """Sets the full_account_number_list of this Account.
+
+        Full account number List of the account that is included only when include = fullAccountNumberList is provided in the request. <br><br><b>Aggregated / Manual</b>: Both <br><b>Applicable containers</b>: bank, creditCard, investment, insurance, loan, reward, bill, otherAssets, otherLiabilities <br><b>Endpoints</b>:<ul><li>GET accounts</li><li>GET accounts/{accountId}</li></ul>  # noqa: E501
+
+        :param full_account_number_list: The full_account_number_list of this Account.  # noqa: E501
+        :type: FullAccountNumberList
+        """
+
+        self._full_account_number_list = full_account_number_list
 
     @property
     def amount_due(self):
@@ -2866,6 +2934,29 @@ class Account(object):
         """
 
         self._policy_to_date = policy_to_date
+
+    @property
+    def loan_payoff_details(self):
+        """Gets the loan_payoff_details of this Account.  # noqa: E501
+
+        The loan payoff details such as date by which the payoff amount should be paid, loan payoff amount, and the outstanding balance on the loan account.<br><br><b>Aggregated / Manual</b>: Aggregated<br><b>Applicable containers</b>: loan<br><b>Endpoints</b>:<ul><li>GET accounts</li><li>GET accounts/{accountId}</li><li>GET dataExtracts/userData</li></ul>  # noqa: E501
+
+        :return: The loan_payoff_details of this Account.  # noqa: E501
+        :rtype: LoanPayoffDetails
+        """
+        return self._loan_payoff_details
+
+    @loan_payoff_details.setter
+    def loan_payoff_details(self, loan_payoff_details):
+        """Sets the loan_payoff_details of this Account.
+
+        The loan payoff details such as date by which the payoff amount should be paid, loan payoff amount, and the outstanding balance on the loan account.<br><br><b>Aggregated / Manual</b>: Aggregated<br><b>Applicable containers</b>: loan<br><b>Endpoints</b>:<ul><li>GET accounts</li><li>GET accounts/{accountId}</li><li>GET dataExtracts/userData</li></ul>  # noqa: E501
+
+        :param loan_payoff_details: The loan_payoff_details of this Account.  # noqa: E501
+        :type: LoanPayoffDetails
+        """
+
+        self._loan_payoff_details = loan_payoff_details
 
     @property
     def payment_profile(self):

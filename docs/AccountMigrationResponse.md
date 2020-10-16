@@ -1,10 +1,10 @@
-# TransactionDays
+# AccountMigrationResponse
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**full_account_number_fields** | **list[str]** |  | [optional] 
-**number_of_transaction_days** | **int** |  | [optional] 
+**provider_id** | **int** |  | [optional] 
+**provider_account_id** | **int** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

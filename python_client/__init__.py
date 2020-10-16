@@ -46,6 +46,7 @@ from python_client.models.account_dataset import AccountDataset
 from python_client.models.account_historical_balances_response import AccountHistoricalBalancesResponse
 from python_client.models.account_history import AccountHistory
 from python_client.models.account_holder import AccountHolder
+from python_client.models.account_migration_response import AccountMigrationResponse
 from python_client.models.account_profile import AccountProfile
 from python_client.models.account_response import AccountResponse
 from python_client.models.added_provider_account import AddedProviderAccount
@@ -55,6 +56,8 @@ from python_client.models.api_key_request import ApiKeyRequest
 from python_client.models.api_key_response import ApiKeyResponse
 from python_client.models.asset_classification import AssetClassification
 from python_client.models.asset_classification_list import AssetClassificationList
+from python_client.models.associated_account import AssociatedAccount
+from python_client.models.associated_accounts_response import AssociatedAccountsResponse
 from python_client.models.attribute import Attribute
 from python_client.models.auto_refresh import AutoRefresh
 from python_client.models.bank_transfer_code import BankTransferCode
@@ -127,8 +130,12 @@ from python_client.models.enrich_data_user import EnrichDataUser
 from python_client.models.enrich_user_data import EnrichUserData
 from python_client.models.enriched_transaction import EnrichedTransaction
 from python_client.models.enriched_transaction_response import EnrichedTransactionResponse
+from python_client.models.evaluate_account_address import EvaluateAccountAddress
+from python_client.models.evaluate_address_request import EvaluateAddressRequest
+from python_client.models.evaluate_address_response import EvaluateAddressResponse
 from python_client.models.field import Field
 from python_client.models.field_operation import FieldOperation
+from python_client.models.full_account_number_list import FullAccountNumberList
 from python_client.models.historical_balance import HistoricalBalance
 from python_client.models.holding import Holding
 from python_client.models.holding_asset_classification_list_response import HoldingAssetClassificationListResponse
@@ -144,6 +151,7 @@ from python_client.models.merchant import Merchant
 from python_client.models.money import Money
 from python_client.models.name import Name
 from python_client.models.option import Option
+from python_client.models.payment_bank_transfer_code import PaymentBankTransferCode
 from python_client.models.payment_identifier import PaymentIdentifier
 from python_client.models.payment_profile import PaymentProfile
 from python_client.models.phone_number import PhoneNumber

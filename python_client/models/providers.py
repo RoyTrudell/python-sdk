@@ -41,6 +41,7 @@ class Providers(object):
         'country_iso_code': 'str',
         'is_added_by_user': 'str',
         'priority': 'str',
+        'associated_provider_ids': 'list[int]',
         'login_help': 'str',
         'primary_language_iso_code': 'str',
         'help': 'str',
@@ -67,6 +68,7 @@ class Providers(object):
         'country_iso_code': 'countryISOCode',
         'is_added_by_user': 'isAddedByUser',
         'priority': 'PRIORITY',
+        'associated_provider_ids': 'associatedProviderIds',
         'login_help': 'loginHelp',
         'primary_language_iso_code': 'primaryLanguageISOCode',
         'help': 'help',
@@ -85,7 +87,7 @@ class Providers(object):
         'status': 'status'
     }
 
-    def __init__(self, language_iso_code=None, forget_password_url=None, favicon=None, account_type=None, country_iso_code=None, is_added_by_user=None, priority=None, login_help=None, primary_language_iso_code=None, help=None, base_url=None, capability=None, is_consent_required=None, login_url=None, is_auto_refresh_enabled=None, name=None, logo=None, id=None, last_modified=None, auth_parameter=None, auth_type=None, dataset=None, status=None):  # noqa: E501
+    def __init__(self, language_iso_code=None, forget_password_url=None, favicon=None, account_type=None, country_iso_code=None, is_added_by_user=None, priority=None, associated_provider_ids=None, login_help=None, primary_language_iso_code=None, help=None, base_url=None, capability=None, is_consent_required=None, login_url=None, is_auto_refresh_enabled=None, name=None, logo=None, id=None, last_modified=None, auth_parameter=None, auth_type=None, dataset=None, status=None):  # noqa: E501
         """Providers - a model defined in Swagger"""  # noqa: E501
 
         self._language_iso_code = None
@@ -95,6 +97,7 @@ class Providers(object):
         self._country_iso_code = None
         self._is_added_by_user = None
         self._priority = None
+        self._associated_provider_ids = None
         self._login_help = None
         self._primary_language_iso_code = None
         self._help = None
@@ -127,6 +130,8 @@ class Providers(object):
             self.is_added_by_user = is_added_by_user
         if priority is not None:
             self.priority = priority
+        if associated_provider_ids is not None:
+            self.associated_provider_ids = associated_provider_ids
         if login_help is not None:
             self.login_help = login_help
         if primary_language_iso_code is not None:
@@ -335,6 +340,29 @@ class Providers(object):
         self._priority = priority
 
     @property
+    def associated_provider_ids(self):
+        """Gets the associated_provider_ids of this Providers.  # noqa: E501
+
+        The screen-scraping providers that are associated to the Open Banking provider ID.<br><br><b>Applicable containers</b>: All Containers<br><b>Endpoints</b>:<ul><li>GET providers</li><li>GET providers/{providerId}</li></ul>  # noqa: E501
+
+        :return: The associated_provider_ids of this Providers.  # noqa: E501
+        :rtype: list[int]
+        """
+        return self._associated_provider_ids
+
+    @associated_provider_ids.setter
+    def associated_provider_ids(self, associated_provider_ids):
+        """Sets the associated_provider_ids of this Providers.
+
+        The screen-scraping providers that are associated to the Open Banking provider ID.<br><br><b>Applicable containers</b>: All Containers<br><b>Endpoints</b>:<ul><li>GET providers</li><li>GET providers/{providerId}</li></ul>  # noqa: E501
+
+        :param associated_provider_ids: The associated_provider_ids of this Providers.  # noqa: E501
+        :type: list[int]
+        """
+
+        self._associated_provider_ids = associated_provider_ids
+
+    @property
     def login_help(self):
         """Gets the login_help of this Providers.  # noqa: E501
 
@@ -430,7 +458,7 @@ class Providers(object):
     def capability(self):
         """Gets the capability of this Providers.  # noqa: E501
 
-        Capability of the site<br><br><b>Endpoints</b>:<ul><li>GET providers/{providerId}</li><li>GET providers</li></ul>  # noqa: E501
+        Capability of the site<br><br><b>Endpoints</b>:<ul><li>GET providers/{providerId}</li><li>GET providers</li></ul><br><b>Note : </b> capability has been deprecated  # noqa: E501
 
         :return: The capability of this Providers.  # noqa: E501
         :rtype: list[Capability]
@@ -441,7 +469,7 @@ class Providers(object):
     def capability(self, capability):
         """Sets the capability of this Providers.
 
-        Capability of the site<br><br><b>Endpoints</b>:<ul><li>GET providers/{providerId}</li><li>GET providers</li></ul>  # noqa: E501
+        Capability of the site<br><br><b>Endpoints</b>:<ul><li>GET providers/{providerId}</li><li>GET providers</li></ul><br><b>Note : </b> capability has been deprecated  # noqa: E501
 
         :param capability: The capability of this Providers.  # noqa: E501
         :type: list[Capability]
@@ -630,7 +658,7 @@ class Providers(object):
         :param auth_parameter: The auth_parameter of this Providers.  # noqa: E501
         :type: list[str]
         """
-        allowed_values = ["authorizationCode", "idToken"]  # noqa: E501
+        allowed_values = ["authorizationCode", "idToken", "authResponse"]  # noqa: E501
         if not set(auth_parameter).issubset(set(allowed_values)):
             raise ValueError(
                 "Invalid values for `auth_parameter` [{0}], must be a subset of [{1}]"  # noqa: E501

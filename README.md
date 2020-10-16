@@ -72,9 +72,12 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AccountsApi* | [**create_manual_account**](docs/AccountsApi.md#create_manual_account) | **POST** /accounts | Add Manual Account
 *AccountsApi* | [**delete_account**](docs/AccountsApi.md#delete_account) | **DELETE** /accounts/{accountId} | Delete Account
+*AccountsApi* | [**evaluate_address**](docs/AccountsApi.md#evaluate_address) | **POST** /accounts/evaluateAddress | Evaluate Address
 *AccountsApi* | [**get_account**](docs/AccountsApi.md#get_account) | **GET** /accounts/{accountId} | Get Account Details
 *AccountsApi* | [**get_all_accounts**](docs/AccountsApi.md#get_all_accounts) | **GET** /accounts | Get Accounts
+*AccountsApi* | [**get_associated_accounts**](docs/AccountsApi.md#get_associated_accounts) | **GET** /accounts/associatedAccounts/{providerAccountId} | Associated Accounts
 *AccountsApi* | [**get_historical_balances**](docs/AccountsApi.md#get_historical_balances) | **GET** /accounts/historicalBalances | Get Historical Balances
+*AccountsApi* | [**migrate_accounts**](docs/AccountsApi.md#migrate_accounts) | **PUT** /accounts/migrateAccounts/{providerAccountId} | Migrate Accounts
 *AccountsApi* | [**update_account**](docs/AccountsApi.md#update_account) | **PUT** /accounts/{accountId} | Update Account
 *AuthApi* | [**delete_api_key**](docs/AuthApi.md#delete_api_key) | **DELETE** /auth/apiKey/{key} | Delete API Key
 *AuthApi* | [**delete_token**](docs/AuthApi.md#delete_token) | **DELETE** /auth/token | Delete Token
@@ -156,6 +159,7 @@ Class | Method | HTTP request | Description
  - [AccountHistoricalBalancesResponse](docs/AccountHistoricalBalancesResponse.md)
  - [AccountHistory](docs/AccountHistory.md)
  - [AccountHolder](docs/AccountHolder.md)
+ - [AccountMigrationResponse](docs/AccountMigrationResponse.md)
  - [AccountProfile](docs/AccountProfile.md)
  - [AccountResponse](docs/AccountResponse.md)
  - [AddedProviderAccount](docs/AddedProviderAccount.md)
@@ -165,6 +169,8 @@ Class | Method | HTTP request | Description
  - [ApiKeyResponse](docs/ApiKeyResponse.md)
  - [AssetClassification](docs/AssetClassification.md)
  - [AssetClassificationList](docs/AssetClassificationList.md)
+ - [AssociatedAccount](docs/AssociatedAccount.md)
+ - [AssociatedAccountsResponse](docs/AssociatedAccountsResponse.md)
  - [Attribute](docs/Attribute.md)
  - [AutoRefresh](docs/AutoRefresh.md)
  - [BankTransferCode](docs/BankTransferCode.md)
@@ -237,8 +243,12 @@ Class | Method | HTTP request | Description
  - [EnrichUserData](docs/EnrichUserData.md)
  - [EnrichedTransaction](docs/EnrichedTransaction.md)
  - [EnrichedTransactionResponse](docs/EnrichedTransactionResponse.md)
+ - [EvaluateAccountAddress](docs/EvaluateAccountAddress.md)
+ - [EvaluateAddressRequest](docs/EvaluateAddressRequest.md)
+ - [EvaluateAddressResponse](docs/EvaluateAddressResponse.md)
  - [Field](docs/Field.md)
  - [FieldOperation](docs/FieldOperation.md)
+ - [FullAccountNumberList](docs/FullAccountNumberList.md)
  - [HistoricalBalance](docs/HistoricalBalance.md)
  - [Holding](docs/Holding.md)
  - [HoldingAssetClassificationListResponse](docs/HoldingAssetClassificationListResponse.md)
@@ -254,6 +264,7 @@ Class | Method | HTTP request | Description
  - [Money](docs/Money.md)
  - [Name](docs/Name.md)
  - [Option](docs/Option.md)
+ - [PaymentBankTransferCode](docs/PaymentBankTransferCode.md)
  - [PaymentIdentifier](docs/PaymentIdentifier.md)
  - [PaymentProfile](docs/PaymentProfile.md)
  - [PhoneNumber](docs/PhoneNumber.md)

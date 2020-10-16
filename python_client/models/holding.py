@@ -41,6 +41,7 @@ class Holding(object):
         'vested_quantity': 'float',
         'description': 'str',
         'unvested_value': 'Money',
+        'security_style': 'str',
         'vested_value': 'Money',
         'option_type': 'str',
         'last_updated': 'str',
@@ -62,6 +63,7 @@ class Holding(object):
         'vested_shares_exercisable': 'float',
         'spread': 'Money',
         'account_id': 'int',
+        'enriched_description': 'str',
         'coupon_rate': 'float',
         'created_date': 'str',
         'accrued_income': 'Money',
@@ -82,6 +84,7 @@ class Holding(object):
         'vested_quantity': 'vestedQuantity',
         'description': 'description',
         'unvested_value': 'unvestedValue',
+        'security_style': 'securityStyle',
         'vested_value': 'vestedValue',
         'option_type': 'optionType',
         'last_updated': 'lastUpdated',
@@ -103,6 +106,7 @@ class Holding(object):
         'vested_shares_exercisable': 'vestedSharesExercisable',
         'spread': 'spread',
         'account_id': 'accountId',
+        'enriched_description': 'enrichedDescription',
         'coupon_rate': 'couponRate',
         'created_date': 'createdDate',
         'accrued_income': 'accruedIncome',
@@ -115,7 +119,7 @@ class Holding(object):
         'strike_price': 'strikePrice'
     }
 
-    def __init__(self, symbol=None, exercised_quantity=None, cusip_number=None, asset_classification=None, vested_quantity=None, description=None, unvested_value=None, vested_value=None, option_type=None, last_updated=None, match_status=None, holding_type=None, maturity_date=None, price=None, term=None, contract_quantity=None, id=None, is_short=None, value=None, expiration_date=None, interest_rate=None, quantity=None, accrued_interest=None, grant_date=None, sedol=None, vested_shares_exercisable=None, spread=None, account_id=None, coupon_rate=None, created_date=None, accrued_income=None, security_type=None, provider_account_id=None, unvested_quantity=None, cost_basis=None, vesting_date=None, isin=None, strike_price=None):  # noqa: E501
+    def __init__(self, symbol=None, exercised_quantity=None, cusip_number=None, asset_classification=None, vested_quantity=None, description=None, unvested_value=None, security_style=None, vested_value=None, option_type=None, last_updated=None, match_status=None, holding_type=None, maturity_date=None, price=None, term=None, contract_quantity=None, id=None, is_short=None, value=None, expiration_date=None, interest_rate=None, quantity=None, accrued_interest=None, grant_date=None, sedol=None, vested_shares_exercisable=None, spread=None, account_id=None, enriched_description=None, coupon_rate=None, created_date=None, accrued_income=None, security_type=None, provider_account_id=None, unvested_quantity=None, cost_basis=None, vesting_date=None, isin=None, strike_price=None):  # noqa: E501
         """Holding - a model defined in Swagger"""  # noqa: E501
 
         self._symbol = None
@@ -125,6 +129,7 @@ class Holding(object):
         self._vested_quantity = None
         self._description = None
         self._unvested_value = None
+        self._security_style = None
         self._vested_value = None
         self._option_type = None
         self._last_updated = None
@@ -146,6 +151,7 @@ class Holding(object):
         self._vested_shares_exercisable = None
         self._spread = None
         self._account_id = None
+        self._enriched_description = None
         self._coupon_rate = None
         self._created_date = None
         self._accrued_income = None
@@ -172,6 +178,8 @@ class Holding(object):
             self.description = description
         if unvested_value is not None:
             self.unvested_value = unvested_value
+        if security_style is not None:
+            self.security_style = security_style
         if vested_value is not None:
             self.vested_value = vested_value
         if option_type is not None:
@@ -214,6 +222,8 @@ class Holding(object):
             self.spread = spread
         if account_id is not None:
             self.account_id = account_id
+        if enriched_description is not None:
+            self.enriched_description = enriched_description
         if coupon_rate is not None:
             self.coupon_rate = coupon_rate
         if created_date is not None:
@@ -395,6 +405,29 @@ class Holding(object):
         """
 
         self._unvested_value = unvested_value
+
+    @property
+    def security_style(self):
+        """Gets the security_style of this Holding.  # noqa: E501
+
+        Indicates the security style of holding identified through the security service.<br><br><b>Applicable containers</b>: investment, insurance<br>  # noqa: E501
+
+        :return: The security_style of this Holding.  # noqa: E501
+        :rtype: str
+        """
+        return self._security_style
+
+    @security_style.setter
+    def security_style(self, security_style):
+        """Sets the security_style of this Holding.
+
+        Indicates the security style of holding identified through the security service.<br><br><b>Applicable containers</b>: investment, insurance<br>  # noqa: E501
+
+        :param security_style: The security_style of this Holding.  # noqa: E501
+        :type: str
+        """
+
+        self._security_style = security_style
 
     @property
     def vested_value(self):
@@ -890,6 +923,29 @@ class Holding(object):
         """
 
         self._account_id = account_id
+
+    @property
+    def enriched_description(self):
+        """Gets the enriched_description of this Holding.  # noqa: E501
+
+        The enrichedDescription is the security description of the normalized holding<br><br><b>Applicable containers</b>: investment, insurance<br>  # noqa: E501
+
+        :return: The enriched_description of this Holding.  # noqa: E501
+        :rtype: str
+        """
+        return self._enriched_description
+
+    @enriched_description.setter
+    def enriched_description(self, enriched_description):
+        """Sets the enriched_description of this Holding.
+
+        The enrichedDescription is the security description of the normalized holding<br><br><b>Applicable containers</b>: investment, insurance<br>  # noqa: E501
+
+        :param enriched_description: The enriched_description of this Holding.  # noqa: E501
+        :type: str
+        """
+
+        self._enriched_description = enriched_description
 
     @property
     def coupon_rate(self):

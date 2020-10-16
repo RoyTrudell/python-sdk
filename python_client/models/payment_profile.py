@@ -17,6 +17,7 @@ import re  # noqa: F401
 import six
 
 from python_client.models.account_address import AccountAddress  # noqa: F401,E501
+from python_client.models.payment_bank_transfer_code import PaymentBankTransferCode  # noqa: F401,E501
 from python_client.models.payment_identifier import PaymentIdentifier  # noqa: F401,E501
 
 
@@ -35,25 +36,30 @@ class PaymentProfile(object):
     """
     swagger_types = {
         'identifier': 'PaymentIdentifier',
-        'address': 'list[AccountAddress]'
+        'address': 'list[AccountAddress]',
+        'payment_bank_transfer_code': 'PaymentBankTransferCode'
     }
 
     attribute_map = {
         'identifier': 'identifier',
-        'address': 'address'
+        'address': 'address',
+        'payment_bank_transfer_code': 'paymentBankTransferCode'
     }
 
-    def __init__(self, identifier=None, address=None):  # noqa: E501
+    def __init__(self, identifier=None, address=None, payment_bank_transfer_code=None):  # noqa: E501
         """PaymentProfile - a model defined in Swagger"""  # noqa: E501
 
         self._identifier = None
         self._address = None
+        self._payment_bank_transfer_code = None
         self.discriminator = None
 
         if identifier is not None:
             self.identifier = identifier
         if address is not None:
             self.address = address
+        if payment_bank_transfer_code is not None:
+            self.payment_bank_transfer_code = payment_bank_transfer_code
 
     @property
     def identifier(self):
@@ -100,6 +106,29 @@ class PaymentProfile(object):
         """
 
         self._address = address
+
+    @property
+    def payment_bank_transfer_code(self):
+        """Gets the payment_bank_transfer_code of this PaymentProfile.  # noqa: E501
+
+        The additional information for payment bank transfer code.<br><br><b>Applicable containers</b>: loan<br><b>Endpoints</b>:<ul><li>GET accounts</li><li>GET accounts/{accountId}</li></ul>  # noqa: E501
+
+        :return: The payment_bank_transfer_code of this PaymentProfile.  # noqa: E501
+        :rtype: PaymentBankTransferCode
+        """
+        return self._payment_bank_transfer_code
+
+    @payment_bank_transfer_code.setter
+    def payment_bank_transfer_code(self, payment_bank_transfer_code):
+        """Sets the payment_bank_transfer_code of this PaymentProfile.
+
+        The additional information for payment bank transfer code.<br><br><b>Applicable containers</b>: loan<br><b>Endpoints</b>:<ul><li>GET accounts</li><li>GET accounts/{accountId}</li></ul>  # noqa: E501
+
+        :param payment_bank_transfer_code: The payment_bank_transfer_code of this PaymentProfile.  # noqa: E501
+        :type: PaymentBankTransferCode
+        """
+
+        self._payment_bank_transfer_code = payment_bank_transfer_code
 
     def to_dict(self):
         """Returns the model properties as a dict"""

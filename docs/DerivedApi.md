@@ -62,7 +62,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_networth**
-> DerivedNetworthResponse get_networth(account_ids=account_ids, from_date=from_date, include=include, interval=interval, skip=skip, to_date=to_date, top=top)
+> DerivedNetworthResponse get_networth(account_ids=account_ids, container=container, from_date=from_date, include=include, interval=interval, skip=skip, to_date=to_date, top=top)
 
 Get Networth Summary
 
@@ -79,6 +79,7 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = python_client.DerivedApi()
 account_ids = 'account_ids_example' # str | comma separated accountIds (optional)
+container = 'container_example' # str | bank/creditCard/investment/insurance/loan/realEstate/otherAssets/otherLiabilities (optional)
 from_date = 'from_date_example' # str | from date for balance retrieval (YYYY-MM-DD) (optional)
 include = 'include_example' # str | details (optional)
 interval = 'interval_example' # str | D-daily, W-weekly or M-monthly (optional)
@@ -88,7 +89,7 @@ top = 56 # int | top (Max 500) (optional)
 
 try:
     # Get Networth Summary
-    api_response = api_instance.get_networth(account_ids=account_ids, from_date=from_date, include=include, interval=interval, skip=skip, to_date=to_date, top=top)
+    api_response = api_instance.get_networth(account_ids=account_ids, container=container, from_date=from_date, include=include, interval=interval, skip=skip, to_date=to_date, top=top)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling DerivedApi->get_networth: %s\n" % e)
@@ -99,6 +100,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **account_ids** | **str**| comma separated accountIds | [optional] 
+ **container** | **str**| bank/creditCard/investment/insurance/loan/realEstate/otherAssets/otherLiabilities | [optional] 
  **from_date** | **str**| from date for balance retrieval (YYYY-MM-DD) | [optional] 
  **include** | **str**| details | [optional] 
  **interval** | **str**| D-daily, W-weekly or M-monthly | [optional] 

@@ -111,7 +111,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_all_provider_accounts**
-> ProviderAccountResponse get_all_provider_accounts(include, provider_ids=provider_ids)
+> ProviderAccountResponse get_all_provider_accounts(include=include, provider_ids=provider_ids)
 
 Get Provider Accounts
 
@@ -127,12 +127,12 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = python_client.ProviderAccountsApi()
-include = 'include_example' # str | include
+include = 'include_example' # str | include (optional)
 provider_ids = 'provider_ids_example' # str | Comma separated providerIds. (optional)
 
 try:
     # Get Provider Accounts
-    api_response = api_instance.get_all_provider_accounts(include, provider_ids=provider_ids)
+    api_response = api_instance.get_all_provider_accounts(include=include, provider_ids=provider_ids)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ProviderAccountsApi->get_all_provider_accounts: %s\n" % e)
@@ -142,7 +142,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **include** | **str**| include | 
+ **include** | **str**| include | [optional] 
  **provider_ids** | **str**| Comma separated providerIds. | [optional] 
 
 ### Return type

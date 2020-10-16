@@ -31,21 +31,54 @@ class TransactionDays(object):
                             and the value is json key in definition.
     """
     swagger_types = {
+        'full_account_number_fields': 'list[str]',
         'number_of_transaction_days': 'int'
     }
 
     attribute_map = {
+        'full_account_number_fields': 'fullAccountNumberFields',
         'number_of_transaction_days': 'numberOfTransactionDays'
     }
 
-    def __init__(self, number_of_transaction_days=None):  # noqa: E501
+    def __init__(self, full_account_number_fields=None, number_of_transaction_days=None):  # noqa: E501
         """TransactionDays - a model defined in Swagger"""  # noqa: E501
 
+        self._full_account_number_fields = None
         self._number_of_transaction_days = None
         self.discriminator = None
 
+        if full_account_number_fields is not None:
+            self.full_account_number_fields = full_account_number_fields
         if number_of_transaction_days is not None:
             self.number_of_transaction_days = number_of_transaction_days
+
+    @property
+    def full_account_number_fields(self):
+        """Gets the full_account_number_fields of this TransactionDays.  # noqa: E501
+
+
+        :return: The full_account_number_fields of this TransactionDays.  # noqa: E501
+        :rtype: list[str]
+        """
+        return self._full_account_number_fields
+
+    @full_account_number_fields.setter
+    def full_account_number_fields(self, full_account_number_fields):
+        """Sets the full_account_number_fields of this TransactionDays.
+
+
+        :param full_account_number_fields: The full_account_number_fields of this TransactionDays.  # noqa: E501
+        :type: list[str]
+        """
+        allowed_values = ["paymentAccountNumber", "unmaskedAccountNumber"]  # noqa: E501
+        if not set(full_account_number_fields).issubset(set(allowed_values)):
+            raise ValueError(
+                "Invalid values for `full_account_number_fields` [{0}], must be a subset of [{1}]"  # noqa: E501
+                .format(", ".join(map(str, set(full_account_number_fields) - set(allowed_values))),  # noqa: E501
+                        ", ".join(map(str, allowed_values)))
+            )
+
+        self._full_account_number_fields = full_account_number_fields
 
     @property
     def number_of_transaction_days(self):

@@ -36,15 +36,16 @@ class ProvidersApi(object):
     def get_all_providers(self, **kwargs):  # noqa: E501
         """Get Providers  # noqa: E501
 
-        The get provider service is used to get all the providers that are enabled, search a provider service by name or routing number and get popular sites of a region. <br>Searching for a provider using a routing number is applicable only to the USA and Canada regions.<br>The valid values for priority are: <br>   1. cobrand: Returns providers enabled for the cobrand (Default priority)<br>   2. popular: Returns providers popular among users of the customer<br><br>Only the datasets, attributes, and containers that are enabled for the customer will be returned in the response.<br>Input for the dataset$filter should adhere to the following expression:<br><dataset.name>[<attribute.name>.container[<container> OR <container>] OR <attribute.name>.container[<container>]] <br>OR <dataset.name>[<attribute.name> OR <attribute.name>]<br><b>dataset$filter value examples:</b><br>ACCT_PROFILE[FULL_ACCT_NUMBER.container[bank OR investment OR creditCard]]<br>ACCT_PROFILE[FULL_ACCT_NUMBER.container[bank]]<br>BASIC_AGG_DATA[ACCOUNT_DETAILS.container[bank OR investment] OR HOLDINGS.container[bank]] OR ACCT_PROFILE[FULL_ACCT_NUMBER.container[bank]]<br>BASIC_AGG_DATA<br>BASIC_AGG_DATA OR ACCT_PROFILE<br>BASIC_AGG_DATA [ ACCOUNT_DETAILS OR HOLDINGS ]<br>BASIC_AGG_DATA [ ACCOUNT_DETAILS] OR DOCUMENT <br>BASIC_AGG_DATA [ BASIC_ACCOUNT_INFO OR ACCOUNT_DETAILS ] <br><br>The skip and top parameters are used for pagination. In the skip and top parameters, pass the number of records to be skipped and retrieved, respectively.<br>The response header provides the links to retrieve the next and previous set of transactions.<br><br><b>Note:</b> <br>1. In a product flow involving user interaction, Yodlee recommends invoking this service with filters.<br>2. Without filters, the service may perform slowly as it takes a few minutes to return data in the response.<br>3. The AuthParameter appears in the response only in case of token-based aggregation sites.<br>4. The pagination feature only applies when the priority parameter is set as cobrand. If no values are provided in the skip and top parameters, the API will only return the first 500 records.<br>5. This service supports the localization feature and accepts locale as a header parameter.<br>  # noqa: E501
+        The get provider service is used to get all the providers that are enabled, search a provider service by name or routing number and get popular sites of a region. <br>Searching for a provider using a routing number is applicable only to the USA and Canada regions.<br>The valid values for priority are: <br>   1. cobrand: Returns providers enabled for the cobrand (Default priority)<br>   2. popular: Returns providers popular among users of the customer<br><br>Only the datasets, attributes, and containers that are enabled for the customer will be returned in the response.<br>Input for the dataset$filter should adhere to the following expression:<br><dataset.name>[<attribute.name>.container[<container> OR <container>] OR <attribute.name>.container[<container>]] <br>OR <dataset.name>[<attribute.name> OR <attribute.name>]<br><b>dataset$filter value examples:</b><br>ACCT_PROFILE[FULL_ACCT_NUMBER.container[bank OR investment OR creditCard]]<br>ACCT_PROFILE[FULL_ACCT_NUMBER.container[bank]]<br>BASIC_AGG_DATA[ACCOUNT_DETAILS.container[bank OR investment] OR HOLDINGS.container[bank]] OR ACCT_PROFILE[FULL_ACCT_NUMBER.container[bank]]<br>BASIC_AGG_DATA<br>BASIC_AGG_DATA OR ACCT_PROFILE<br>BASIC_AGG_DATA [ ACCOUNT_DETAILS OR HOLDINGS ]<br>BASIC_AGG_DATA [ ACCOUNT_DETAILS] OR DOCUMENT <br>BASIC_AGG_DATA [ BASIC_ACCOUNT_INFO OR ACCOUNT_DETAILS ] <br><br>The fullAcountNumberFields is specified to filter the providers that have paymentAccountNumber or unmaskedAccountNumber support in the FULL_ACCT_NUMBER dataset attribute.<br><b>Examples for usage of fullAccountNumberFields </b><br>dataset$filter=ACCT_PROFILE[ FULL_ACCT_NUMBER.container [ bank ]] &amp; fullAccountNumberFields=paymentAccountNumber<br>dataset$filter=ACCT_PROFILE[ FULL_ACCT_NUMBER.container [ bank ]] &amp; fullAccountNumberFields=unmaskedAccountNumber<br>dataset$filter=ACCT_PROFILE[ FULL_ACCT_NUMBER.container [ bank ]] &amp; fullAccountNumberFields=unmaskedAccountNumber,paymentAccountNumber<br><br>The skip and top parameters are used for pagination. In the skip and top parameters, pass the number of records to be skipped and retrieved, respectively.<br>The response header provides the links to retrieve the next and previous set of transactions.<br><br><b>Note:</b> <br>1. In a product flow involving user interaction, Yodlee recommends invoking this service with filters.<br>2. Without filters, the service may perform slowly as it takes a few minutes to return data in the response.<br>3. The AuthParameter appears in the response only in case of token-based aggregation sites.<br>4. The pagination feature only applies when the priority parameter is set as cobrand. If no values are provided in the skip and top parameters, the API will only return the first 500 records.<br>5. This service supports the localization feature and accepts locale as a header parameter.<br>6. The capability has been deprecated in query parameter and response.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.get_all_providers(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str capability: CHALLENGE_DEPOSIT_VERIFICATION
+        :param str capability: CHALLENGE_DEPOSIT_VERIFICATION - capability search is deprecated
         :param str datasetfilter: Expression to filter the providers by dataset(s) or dataset attribute(s). The default value will be the dataset or dataset attributes configured as default for the customer.
+        :param str full_account_number_fields: Specify to filter the providers with values paymentAccountNumber,unmaskedAccountNumber.
         :param int institution_id: Institution Id for Single site selection
         :param str name: Name in minimum 1 character or routing number.
         :param str priority: Search priority
@@ -65,15 +66,16 @@ class ProvidersApi(object):
     def get_all_providers_with_http_info(self, **kwargs):  # noqa: E501
         """Get Providers  # noqa: E501
 
-        The get provider service is used to get all the providers that are enabled, search a provider service by name or routing number and get popular sites of a region. <br>Searching for a provider using a routing number is applicable only to the USA and Canada regions.<br>The valid values for priority are: <br>   1. cobrand: Returns providers enabled for the cobrand (Default priority)<br>   2. popular: Returns providers popular among users of the customer<br><br>Only the datasets, attributes, and containers that are enabled for the customer will be returned in the response.<br>Input for the dataset$filter should adhere to the following expression:<br><dataset.name>[<attribute.name>.container[<container> OR <container>] OR <attribute.name>.container[<container>]] <br>OR <dataset.name>[<attribute.name> OR <attribute.name>]<br><b>dataset$filter value examples:</b><br>ACCT_PROFILE[FULL_ACCT_NUMBER.container[bank OR investment OR creditCard]]<br>ACCT_PROFILE[FULL_ACCT_NUMBER.container[bank]]<br>BASIC_AGG_DATA[ACCOUNT_DETAILS.container[bank OR investment] OR HOLDINGS.container[bank]] OR ACCT_PROFILE[FULL_ACCT_NUMBER.container[bank]]<br>BASIC_AGG_DATA<br>BASIC_AGG_DATA OR ACCT_PROFILE<br>BASIC_AGG_DATA [ ACCOUNT_DETAILS OR HOLDINGS ]<br>BASIC_AGG_DATA [ ACCOUNT_DETAILS] OR DOCUMENT <br>BASIC_AGG_DATA [ BASIC_ACCOUNT_INFO OR ACCOUNT_DETAILS ] <br><br>The skip and top parameters are used for pagination. In the skip and top parameters, pass the number of records to be skipped and retrieved, respectively.<br>The response header provides the links to retrieve the next and previous set of transactions.<br><br><b>Note:</b> <br>1. In a product flow involving user interaction, Yodlee recommends invoking this service with filters.<br>2. Without filters, the service may perform slowly as it takes a few minutes to return data in the response.<br>3. The AuthParameter appears in the response only in case of token-based aggregation sites.<br>4. The pagination feature only applies when the priority parameter is set as cobrand. If no values are provided in the skip and top parameters, the API will only return the first 500 records.<br>5. This service supports the localization feature and accepts locale as a header parameter.<br>  # noqa: E501
+        The get provider service is used to get all the providers that are enabled, search a provider service by name or routing number and get popular sites of a region. <br>Searching for a provider using a routing number is applicable only to the USA and Canada regions.<br>The valid values for priority are: <br>   1. cobrand: Returns providers enabled for the cobrand (Default priority)<br>   2. popular: Returns providers popular among users of the customer<br><br>Only the datasets, attributes, and containers that are enabled for the customer will be returned in the response.<br>Input for the dataset$filter should adhere to the following expression:<br><dataset.name>[<attribute.name>.container[<container> OR <container>] OR <attribute.name>.container[<container>]] <br>OR <dataset.name>[<attribute.name> OR <attribute.name>]<br><b>dataset$filter value examples:</b><br>ACCT_PROFILE[FULL_ACCT_NUMBER.container[bank OR investment OR creditCard]]<br>ACCT_PROFILE[FULL_ACCT_NUMBER.container[bank]]<br>BASIC_AGG_DATA[ACCOUNT_DETAILS.container[bank OR investment] OR HOLDINGS.container[bank]] OR ACCT_PROFILE[FULL_ACCT_NUMBER.container[bank]]<br>BASIC_AGG_DATA<br>BASIC_AGG_DATA OR ACCT_PROFILE<br>BASIC_AGG_DATA [ ACCOUNT_DETAILS OR HOLDINGS ]<br>BASIC_AGG_DATA [ ACCOUNT_DETAILS] OR DOCUMENT <br>BASIC_AGG_DATA [ BASIC_ACCOUNT_INFO OR ACCOUNT_DETAILS ] <br><br>The fullAcountNumberFields is specified to filter the providers that have paymentAccountNumber or unmaskedAccountNumber support in the FULL_ACCT_NUMBER dataset attribute.<br><b>Examples for usage of fullAccountNumberFields </b><br>dataset$filter=ACCT_PROFILE[ FULL_ACCT_NUMBER.container [ bank ]] &amp; fullAccountNumberFields=paymentAccountNumber<br>dataset$filter=ACCT_PROFILE[ FULL_ACCT_NUMBER.container [ bank ]] &amp; fullAccountNumberFields=unmaskedAccountNumber<br>dataset$filter=ACCT_PROFILE[ FULL_ACCT_NUMBER.container [ bank ]] &amp; fullAccountNumberFields=unmaskedAccountNumber,paymentAccountNumber<br><br>The skip and top parameters are used for pagination. In the skip and top parameters, pass the number of records to be skipped and retrieved, respectively.<br>The response header provides the links to retrieve the next and previous set of transactions.<br><br><b>Note:</b> <br>1. In a product flow involving user interaction, Yodlee recommends invoking this service with filters.<br>2. Without filters, the service may perform slowly as it takes a few minutes to return data in the response.<br>3. The AuthParameter appears in the response only in case of token-based aggregation sites.<br>4. The pagination feature only applies when the priority parameter is set as cobrand. If no values are provided in the skip and top parameters, the API will only return the first 500 records.<br>5. This service supports the localization feature and accepts locale as a header parameter.<br>6. The capability has been deprecated in query parameter and response.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.get_all_providers_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str capability: CHALLENGE_DEPOSIT_VERIFICATION
+        :param str capability: CHALLENGE_DEPOSIT_VERIFICATION - capability search is deprecated
         :param str datasetfilter: Expression to filter the providers by dataset(s) or dataset attribute(s). The default value will be the dataset or dataset attributes configured as default for the customer.
+        :param str full_account_number_fields: Specify to filter the providers with values paymentAccountNumber,unmaskedAccountNumber.
         :param int institution_id: Institution Id for Single site selection
         :param str name: Name in minimum 1 character or routing number.
         :param str priority: Search priority
@@ -85,7 +87,7 @@ class ProvidersApi(object):
                  returns the request thread.
         """
 
-        all_params = ['capability', 'datasetfilter', 'institution_id', 'name', 'priority', 'provider_id', 'skip', 'top']  # noqa: E501
+        all_params = ['capability', 'datasetfilter', 'full_account_number_fields', 'institution_id', 'name', 'priority', 'provider_id', 'skip', 'top']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -110,6 +112,8 @@ class ProvidersApi(object):
             query_params.append(('capability', params['capability']))  # noqa: E501
         if 'datasetfilter' in params:
             query_params.append(('dataset$filter', params['datasetfilter']))  # noqa: E501
+        if 'full_account_number_fields' in params:
+            query_params.append(('fullAccountNumberFields', params['full_account_number_fields']))  # noqa: E501
         if 'institution_id' in params:
             query_params.append(('institutionId', params['institution_id']))  # noqa: E501
         if 'name' in params:
@@ -155,7 +159,7 @@ class ProvidersApi(object):
     def get_provider(self, provider_id, **kwargs):  # noqa: E501
         """Get Provider Details  # noqa: E501
 
-        The get provider detail service is used to get detailed information including the login form for a provider.<br>The response is a provider object that includes information such as name of the provider, <br>provider's base URL, a list of containers supported by the provider, the login form details of the provider, etc.<br>Only enabled datasets, attributes and containers gets returned in the response.<br><b>Note:</b>This service supports the localization feature and accepts locale as a header parameter.<br>  # noqa: E501
+        The get provider detail service is used to get detailed information including the login form for a provider.<br>The response is a provider object that includes information such as name of the provider, <br>provider's base URL, a list of containers supported by the provider, the login form details of the provider, etc.<br>Only enabled datasets, attributes and containers gets returned in the response.<br><b>Note:</b><br>1. This service supports the localization feature and accepts locale as a header parameter.<br>2. The capability has been deprecated in the response.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.get_provider(provider_id, async_req=True)
@@ -177,7 +181,7 @@ class ProvidersApi(object):
     def get_provider_with_http_info(self, provider_id, **kwargs):  # noqa: E501
         """Get Provider Details  # noqa: E501
 
-        The get provider detail service is used to get detailed information including the login form for a provider.<br>The response is a provider object that includes information such as name of the provider, <br>provider's base URL, a list of containers supported by the provider, the login form details of the provider, etc.<br>Only enabled datasets, attributes and containers gets returned in the response.<br><b>Note:</b>This service supports the localization feature and accepts locale as a header parameter.<br>  # noqa: E501
+        The get provider detail service is used to get detailed information including the login form for a provider.<br>The response is a provider object that includes information such as name of the provider, <br>provider's base URL, a list of containers supported by the provider, the login form details of the provider, etc.<br>Only enabled datasets, attributes and containers gets returned in the response.<br><b>Note:</b><br>1. This service supports the localization feature and accepts locale as a header parameter.<br>2. The capability has been deprecated in the response.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.get_provider_with_http_info(provider_id, async_req=True)
@@ -250,15 +254,16 @@ class ProvidersApi(object):
     def get_providers_count(self, **kwargs):  # noqa: E501
         """Get Providers Count  # noqa: E501
 
-        The count service provides the total number of providers that get returned in the GET /providers depending on the input parameters passed.<br>If you are implementing pagination for providers, call this endpoint before calling GET /providers to know the number of providers that are returned for the input parameters passed.<br>The functionality of the input parameters remains the same as that of the GET /providers endpoint<br>.  # noqa: E501
+        The count service provides the total number of providers that get returned in the GET /providers depending on the input parameters passed.<br>If you are implementing pagination for providers, call this endpoint before calling GET /providers to know the number of providers that are returned for the input parameters passed.<br>The functionality of the input parameters remains the same as that of the GET /providers endpoint<br><b>Note:</b> The capability has been deprecated in the query parameter.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.get_providers_count(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str capability: CHALLENGE_DEPOSIT_VERIFICATION
+        :param str capability: CHALLENGE_DEPOSIT_VERIFICATION - capability search is deprecated
         :param str datasetfilter: Expression to filter the providers by dataset(s) or dataset attribute(s). The default value will be the dataset or dataset attributes configured as default for the customer.
+        :param str full_account_number_fields: Specify to filter the providers with values paymentAccountNumber,unmaskedAccountNumber.
         :param str name: Name in minimum 1 character or routing number.
         :param str priority: Search priority
         :return: ProvidersCountResponse
@@ -275,15 +280,16 @@ class ProvidersApi(object):
     def get_providers_count_with_http_info(self, **kwargs):  # noqa: E501
         """Get Providers Count  # noqa: E501
 
-        The count service provides the total number of providers that get returned in the GET /providers depending on the input parameters passed.<br>If you are implementing pagination for providers, call this endpoint before calling GET /providers to know the number of providers that are returned for the input parameters passed.<br>The functionality of the input parameters remains the same as that of the GET /providers endpoint<br>.  # noqa: E501
+        The count service provides the total number of providers that get returned in the GET /providers depending on the input parameters passed.<br>If you are implementing pagination for providers, call this endpoint before calling GET /providers to know the number of providers that are returned for the input parameters passed.<br>The functionality of the input parameters remains the same as that of the GET /providers endpoint<br><b>Note:</b> The capability has been deprecated in the query parameter.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.get_providers_count_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str capability: CHALLENGE_DEPOSIT_VERIFICATION
+        :param str capability: CHALLENGE_DEPOSIT_VERIFICATION - capability search is deprecated
         :param str datasetfilter: Expression to filter the providers by dataset(s) or dataset attribute(s). The default value will be the dataset or dataset attributes configured as default for the customer.
+        :param str full_account_number_fields: Specify to filter the providers with values paymentAccountNumber,unmaskedAccountNumber.
         :param str name: Name in minimum 1 character or routing number.
         :param str priority: Search priority
         :return: ProvidersCountResponse
@@ -291,7 +297,7 @@ class ProvidersApi(object):
                  returns the request thread.
         """
 
-        all_params = ['capability', 'datasetfilter', 'name', 'priority']  # noqa: E501
+        all_params = ['capability', 'datasetfilter', 'full_account_number_fields', 'name', 'priority']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -316,6 +322,8 @@ class ProvidersApi(object):
             query_params.append(('capability', params['capability']))  # noqa: E501
         if 'datasetfilter' in params:
             query_params.append(('dataset$filter', params['datasetfilter']))  # noqa: E501
+        if 'full_account_number_fields' in params:
+            query_params.append(('fullAccountNumberFields', params['full_account_number_fields']))  # noqa: E501
         if 'name' in params:
             query_params.append(('name', params['name']))  # noqa: E501
         if 'priority' in params:

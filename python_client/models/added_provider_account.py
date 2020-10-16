@@ -35,6 +35,7 @@ class AddedProviderAccount(object):
     swagger_types = {
         'last_updated': 'str',
         'aggregation_source': 'str',
+        'oauth_migration_status': 'str',
         'provider_id': 'int',
         'request_id': 'str',
         'is_manual': 'bool',
@@ -46,6 +47,7 @@ class AddedProviderAccount(object):
     attribute_map = {
         'last_updated': 'lastUpdated',
         'aggregation_source': 'aggregationSource',
+        'oauth_migration_status': 'oauthMigrationStatus',
         'provider_id': 'providerId',
         'request_id': 'requestId',
         'is_manual': 'isManual',
@@ -54,11 +56,12 @@ class AddedProviderAccount(object):
         'status': 'status'
     }
 
-    def __init__(self, last_updated=None, aggregation_source=None, provider_id=None, request_id=None, is_manual=None, id=None, dataset=None, status=None):  # noqa: E501
+    def __init__(self, last_updated=None, aggregation_source=None, oauth_migration_status=None, provider_id=None, request_id=None, is_manual=None, id=None, dataset=None, status=None):  # noqa: E501
         """AddedProviderAccount - a model defined in Swagger"""  # noqa: E501
 
         self._last_updated = None
         self._aggregation_source = None
+        self._oauth_migration_status = None
         self._provider_id = None
         self._request_id = None
         self._is_manual = None
@@ -71,6 +74,8 @@ class AddedProviderAccount(object):
             self.last_updated = last_updated
         if aggregation_source is not None:
             self.aggregation_source = aggregation_source
+        if oauth_migration_status is not None:
+            self.oauth_migration_status = oauth_migration_status
         if provider_id is not None:
             self.provider_id = provider_id
         if request_id is not None:
@@ -135,6 +140,35 @@ class AddedProviderAccount(object):
             )
 
         self._aggregation_source = aggregation_source
+
+    @property
+    def oauth_migration_status(self):
+        """Gets the oauth_migration_status of this AddedProviderAccount.  # noqa: E501
+
+        Indicates the migration status of the provider account from screen-scraping provider to the Open Banking provider. <br><br><b>Endpoints</b>:<ul><li>GET providerAccounts</li><li>GET providerAccounts/{providerAccountId}</li><li>PUT providerAccounts/{providerAccountId}</li><li>GET dataExtracts/userData</li></ul>  # noqa: E501
+
+        :return: The oauth_migration_status of this AddedProviderAccount.  # noqa: E501
+        :rtype: str
+        """
+        return self._oauth_migration_status
+
+    @oauth_migration_status.setter
+    def oauth_migration_status(self, oauth_migration_status):
+        """Sets the oauth_migration_status of this AddedProviderAccount.
+
+        Indicates the migration status of the provider account from screen-scraping provider to the Open Banking provider. <br><br><b>Endpoints</b>:<ul><li>GET providerAccounts</li><li>GET providerAccounts/{providerAccountId}</li><li>PUT providerAccounts/{providerAccountId}</li><li>GET dataExtracts/userData</li></ul>  # noqa: E501
+
+        :param oauth_migration_status: The oauth_migration_status of this AddedProviderAccount.  # noqa: E501
+        :type: str
+        """
+        allowed_values = ["IN_PROGRESS", "TO_BE_MIGRATED", "COMPLETED"]  # noqa: E501
+        if oauth_migration_status not in allowed_values:
+            raise ValueError(
+                "Invalid value for `oauth_migration_status` ({0}), must be one of {1}"  # noqa: E501
+                .format(oauth_migration_status, allowed_values)
+            )
+
+        self._oauth_migration_status = oauth_migration_status
 
     @property
     def provider_id(self):

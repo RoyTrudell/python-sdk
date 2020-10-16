@@ -227,10 +227,109 @@ class AccountsApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
+    def evaluate_address(self, address_param, **kwargs):  # noqa: E501
+        """Evaluate Address  # noqa: E501
+
+        Use this service to validate the address before adding the real estate account.<br>If the address is valid, the service will return the complete address information.<br>The response will contain multiple addresses if the user-provided input matches with multiple entries in the vendor database.<br>In the case of multiple matches, the user can select the appropriate address from the list and then invoke the add account service with the complete address.<br><b>Note:</b> Yodlee recommends to use this service before adding the real estate account to avoid failures.<br>  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.evaluate_address(address_param, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param EvaluateAddressRequest address_param: addressParam (required)
+        :return: EvaluateAddressResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.evaluate_address_with_http_info(address_param, **kwargs)  # noqa: E501
+        else:
+            (data) = self.evaluate_address_with_http_info(address_param, **kwargs)  # noqa: E501
+            return data
+
+    def evaluate_address_with_http_info(self, address_param, **kwargs):  # noqa: E501
+        """Evaluate Address  # noqa: E501
+
+        Use this service to validate the address before adding the real estate account.<br>If the address is valid, the service will return the complete address information.<br>The response will contain multiple addresses if the user-provided input matches with multiple entries in the vendor database.<br>In the case of multiple matches, the user can select the appropriate address from the list and then invoke the add account service with the complete address.<br><b>Note:</b> Yodlee recommends to use this service before adding the real estate account to avoid failures.<br>  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.evaluate_address_with_http_info(address_param, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param EvaluateAddressRequest address_param: addressParam (required)
+        :return: EvaluateAddressResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['address_param']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method evaluate_address" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'address_param' is set
+        if ('address_param' not in params or
+                params['address_param'] is None):
+            raise ValueError("Missing the required parameter `address_param` when calling `evaluate_address`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'address_param' in params:
+            body_params = params['address_param']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json;charset=UTF-8'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        return self.api_client.call_api(
+            '/accounts/evaluateAddress', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='EvaluateAddressResponse',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
     def get_account(self, account_id, container, **kwargs):  # noqa: E501
         """Get Account Details  # noqa: E501
 
-        The get account details service provides detailed information of an account.<br>  # noqa: E501
+        The get account details service provides detailed information of an account.<br><b>Note:</b><br>fullAccountNumber is deprecated and is replaced with fullAccountNumberList in include parameter and response.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.get_account(account_id, container, async_req=True)
@@ -239,7 +338,7 @@ class AccountsApi(object):
         :param async_req bool
         :param int account_id: accountId (required)
         :param str container: bank/creditCard/investment/insurance/loan/reward/bill/realEstate/otherAssets/otherLiabilities (required)
-        :param str include: profile, holder, fullAccountNumber, paymentProfile, autoRefresh
+        :param str include: profile, holder, fullAccountNumber, fullAccountNumberList, paymentProfile, autoRefresh<br><b>Note:</b>fullAccountNumber is deprecated and is replaced with fullAccountNumberList in include parameter and response.
         :return: AccountResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -254,7 +353,7 @@ class AccountsApi(object):
     def get_account_with_http_info(self, account_id, container, **kwargs):  # noqa: E501
         """Get Account Details  # noqa: E501
 
-        The get account details service provides detailed information of an account.<br>  # noqa: E501
+        The get account details service provides detailed information of an account.<br><b>Note:</b><br>fullAccountNumber is deprecated and is replaced with fullAccountNumberList in include parameter and response.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.get_account_with_http_info(account_id, container, async_req=True)
@@ -263,7 +362,7 @@ class AccountsApi(object):
         :param async_req bool
         :param int account_id: accountId (required)
         :param str container: bank/creditCard/investment/insurance/loan/reward/bill/realEstate/otherAssets/otherLiabilities (required)
-        :param str include: profile, holder, fullAccountNumber, paymentProfile, autoRefresh
+        :param str include: profile, holder, fullAccountNumber, fullAccountNumberList, paymentProfile, autoRefresh<br><b>Note:</b>fullAccountNumber is deprecated and is replaced with fullAccountNumberList in include parameter and response.
         :return: AccountResponse
                  If the method is called asynchronously,
                  returns the request thread.
@@ -337,7 +436,7 @@ class AccountsApi(object):
     def get_all_accounts(self, **kwargs):  # noqa: E501
         """Get Accounts  # noqa: E501
 
-        The get accounts service provides information about accounts added by the user.<br>By default, this service returns information for active and to be closed accounts.<br>If requestId is provided, the accounts that are updated in the context of the requestId will be provided in the response.<br>  # noqa: E501
+        The get accounts service provides information about accounts added by the user.<br>By default, this service returns information for active and to be closed accounts.<br>If requestId is provided, the accounts that are updated in the context of the requestId will be provided in the response.<br><b>Note:</b><br>fullAccountNumber is deprecated and is replaced with fullAccountNumberList in include parameter and response.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.get_all_accounts(async_req=True)
@@ -346,7 +445,7 @@ class AccountsApi(object):
         :param async_req bool
         :param str account_id: Comma separated accountIds.
         :param str container: bank/creditCard/investment/insurance/loan/reward/bill/realEstate/otherAssets/otherLiabilities
-        :param str include: profile, holder, fullAccountNumber, paymentProfile, autoRefresh
+        :param str include: profile, holder, fullAccountNumber, fullAccountNumberList, paymentProfile, autoRefresh<br><b>Note:</b>fullAccountNumber is deprecated and is replaced with fullAccountNumberList in include parameter and response.
         :param str provider_account_id: Comma separated providerAccountIds.
         :param str request_id: The unique identifier that returns contextual data
         :param str status: ACTIVE,INACTIVE,TO_BE_CLOSED,CLOSED
@@ -364,7 +463,7 @@ class AccountsApi(object):
     def get_all_accounts_with_http_info(self, **kwargs):  # noqa: E501
         """Get Accounts  # noqa: E501
 
-        The get accounts service provides information about accounts added by the user.<br>By default, this service returns information for active and to be closed accounts.<br>If requestId is provided, the accounts that are updated in the context of the requestId will be provided in the response.<br>  # noqa: E501
+        The get accounts service provides information about accounts added by the user.<br>By default, this service returns information for active and to be closed accounts.<br>If requestId is provided, the accounts that are updated in the context of the requestId will be provided in the response.<br><b>Note:</b><br>fullAccountNumber is deprecated and is replaced with fullAccountNumberList in include parameter and response.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.get_all_accounts_with_http_info(async_req=True)
@@ -373,7 +472,7 @@ class AccountsApi(object):
         :param async_req bool
         :param str account_id: Comma separated accountIds.
         :param str container: bank/creditCard/investment/insurance/loan/reward/bill/realEstate/otherAssets/otherLiabilities
-        :param str include: profile, holder, fullAccountNumber, paymentProfile, autoRefresh
+        :param str include: profile, holder, fullAccountNumber, fullAccountNumberList, paymentProfile, autoRefresh<br><b>Note:</b>fullAccountNumber is deprecated and is replaced with fullAccountNumberList in include parameter and response.
         :param str provider_account_id: Comma separated providerAccountIds.
         :param str request_id: The unique identifier that returns contextual data
         :param str status: ACTIVE,INACTIVE,TO_BE_CLOSED,CLOSED
@@ -438,6 +537,101 @@ class AccountsApi(object):
             post_params=form_params,
             files=local_var_files,
             response_type='AccountResponse',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def get_associated_accounts(self, provider_account_id, **kwargs):  # noqa: E501
+        """Associated Accounts  # noqa: E501
+
+        Yodlee classifies providers into credential-based aggregation and Open Banking (OB) providers.<br>This service is associated with the OB aggregation flow. As part of the OB solution, financial institutions may merge their subsidiaries and provide data as a single OB provider.<br>Before the OB solution, this data was aggregated with different provider IDs.<br>This service accepts the providerAccountId and returns all accounts of the associated providerAccounts that belong to the subsidiary of the financial institution.<br>This data should be displayed to the user to let them select the accounts that they wish to provide consent to share account data.<br>  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_associated_accounts(provider_account_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param int provider_account_id: providerAccountId (required)
+        :return: AssociatedAccountsResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_associated_accounts_with_http_info(provider_account_id, **kwargs)  # noqa: E501
+        else:
+            (data) = self.get_associated_accounts_with_http_info(provider_account_id, **kwargs)  # noqa: E501
+            return data
+
+    def get_associated_accounts_with_http_info(self, provider_account_id, **kwargs):  # noqa: E501
+        """Associated Accounts  # noqa: E501
+
+        Yodlee classifies providers into credential-based aggregation and Open Banking (OB) providers.<br>This service is associated with the OB aggregation flow. As part of the OB solution, financial institutions may merge their subsidiaries and provide data as a single OB provider.<br>Before the OB solution, this data was aggregated with different provider IDs.<br>This service accepts the providerAccountId and returns all accounts of the associated providerAccounts that belong to the subsidiary of the financial institution.<br>This data should be displayed to the user to let them select the accounts that they wish to provide consent to share account data.<br>  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_associated_accounts_with_http_info(provider_account_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param int provider_account_id: providerAccountId (required)
+        :return: AssociatedAccountsResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['provider_account_id']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_associated_accounts" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'provider_account_id' is set
+        if ('provider_account_id' not in params or
+                params['provider_account_id'] is None):
+            raise ValueError("Missing the required parameter `provider_account_id` when calling `get_associated_accounts`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'provider_account_id' in params:
+            path_params['providerAccountId'] = params['provider_account_id']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json;charset=UTF-8'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        return self.api_client.call_api(
+            '/accounts/associatedAccounts/{providerAccountId}', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='AssociatedAccountsResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -553,6 +747,105 @@ class AccountsApi(object):
             post_params=form_params,
             files=local_var_files,
             response_type='AccountHistoricalBalancesResponse',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def migrate_accounts(self, provider_account_id, **kwargs):  # noqa: E501
+        """Migrate Accounts  # noqa: E501
+
+        This service is associated with the open banking (OB) flow.<br>Before invoking this service, display all the associated accounts to the user by calling the GET /associatedAccounts API.<br>The migrate accounts API treats the user's consent acceptance to initiate account migration. Invoking this service indicates that the user has given the consent to access the associated account information from the financial institution.<br>If an existing provider supports bank, card, and loan accounts, and chose only to provide bank and card through OB APIs, a new providerAccountId for OB will be created.<br>The bank and card account information will be moved to the new providerAccountId. The loan account will be retained in the existing provider account.<br>This service returns the OB providerId and the OB providerAccountId. Note that, as part of this process, there is a possibility of one or more providerAccounts getting merged.<br>The update or delete actions will not be allowed for the providerAccounts involved in the migration process until the user completes the authorization on the OB provider.<br>The oauthMigrationEligibilityStatus attribute in the GET /accounts API response indicates the accounts included in the migration process.<br>  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.migrate_accounts(provider_account_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param int provider_account_id: providerAccountId (required)
+        :return: AccountMigrationResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.migrate_accounts_with_http_info(provider_account_id, **kwargs)  # noqa: E501
+        else:
+            (data) = self.migrate_accounts_with_http_info(provider_account_id, **kwargs)  # noqa: E501
+            return data
+
+    def migrate_accounts_with_http_info(self, provider_account_id, **kwargs):  # noqa: E501
+        """Migrate Accounts  # noqa: E501
+
+        This service is associated with the open banking (OB) flow.<br>Before invoking this service, display all the associated accounts to the user by calling the GET /associatedAccounts API.<br>The migrate accounts API treats the user's consent acceptance to initiate account migration. Invoking this service indicates that the user has given the consent to access the associated account information from the financial institution.<br>If an existing provider supports bank, card, and loan accounts, and chose only to provide bank and card through OB APIs, a new providerAccountId for OB will be created.<br>The bank and card account information will be moved to the new providerAccountId. The loan account will be retained in the existing provider account.<br>This service returns the OB providerId and the OB providerAccountId. Note that, as part of this process, there is a possibility of one or more providerAccounts getting merged.<br>The update or delete actions will not be allowed for the providerAccounts involved in the migration process until the user completes the authorization on the OB provider.<br>The oauthMigrationEligibilityStatus attribute in the GET /accounts API response indicates the accounts included in the migration process.<br>  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.migrate_accounts_with_http_info(provider_account_id, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param int provider_account_id: providerAccountId (required)
+        :return: AccountMigrationResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['provider_account_id']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method migrate_accounts" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'provider_account_id' is set
+        if ('provider_account_id' not in params or
+                params['provider_account_id'] is None):
+            raise ValueError("Missing the required parameter `provider_account_id` when calling `migrate_accounts`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'provider_account_id' in params:
+            path_params['providerAccountId'] = params['provider_account_id']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json;charset=UTF-8'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        return self.api_client.call_api(
+            '/accounts/migrateAccounts/{providerAccountId}', 'PUT',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='AccountMigrationResponse',  # noqa: E501
             auth_settings=auth_settings,
             async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
